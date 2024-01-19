@@ -23,6 +23,7 @@ h1.title-word {
     font-size: 15em;
     line-height: 1;
     color: #c8ffce;
+    container-name: title-word;
 
     .letter-wrap {
         overflow: hidden;
@@ -42,8 +43,8 @@ h1.title-word {
 
     &:last-child {
         grid-row: 3;
-        grid-column: 6 / 11;
-        justify-self: end;
+        grid-column: 2 / 11;
+        // justify-self: end;
     }
 
     .letter-break .letter-character {
@@ -54,5 +55,14 @@ h1.title-word {
         display: flex;
         justify-content: space-between;
         gap: 4rem;
+
+        .sub-title {
+            align-self: flex-end;
+        }
+    }
+
+    .sub-title h3 {
+        font-size: 1.75rem;
+        font-weight: normal;
     }
 }
