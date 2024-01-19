@@ -25,6 +25,10 @@ h1.title-word {
     color: #c8ffce;
     container-name: title-word;
 
+    // @container title-word (min-width: 700px) {
+        
+    // }
+
     .letter-wrap {
         overflow: hidden;
     }

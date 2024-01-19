@@ -4,7 +4,9 @@ import '../styles/scene-intro.scss';
 const IntroScene = () => {
     return (
         <section id="intro" className="section-boundary">
-            <div className="intro-grid"></div>
+            <div className="intro-grid">
+                
+            </div>
         </section>
     );
 }
