@@ -1,0 +1,57 @@
+// media query
+@mixin respond ($breakpoint) {
+
+    // $breakpoint is simply a variable that can have several values
+
+    @if $breakpoint==xs {
+
+        // here `laptop` is the value of $breakpoint
+        // when call laptop, we mean the following piece of code        
+
+        @media only screen and (min-width: 640px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==sm {
+        @media only screen and (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==md {
+        @media only screen and (min-width: 1024px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==lg {
+        @media only screen and (min-width: 1280px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint==xl {
+        @media only screen and (min-width: 1536px) {
+            @content;
+        }
+    }
+}
+
+// aspect ratio
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    padding-bottom: calc($height / $width) * 100%;
+
+    img,
+    video,
+    iframe,
+    object,
+    embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}

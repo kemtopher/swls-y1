@@ -1,0 +1,100 @@
+/* Default Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Breakpoint 1 - Small devices */
+  @media screen and (min-width: 576px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+    }
+    h4 {
+      font-size: 1.2rem;
+    }
+    h5 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Breakpoint 2 - Medium devices */
+  @media screen and (min-width: 768px) {
+    h1 {
+      font-size: 3rem;
+    }
+    h2 {
+      font-size: 2.5rem;
+    }
+    h3 {
+      font-size: 2rem;
+    }
+    h4 {
+      font-size: 1.5rem;
+    }
+    h5 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Breakpoint 3 - Large devices */
+  @media screen and (min-width: 992px) {
+    h1 {
+      font-size: 4rem;
+    }
+    h2 {
+      font-size: 3rem;
+    }
+    h3 {
+      font-size: 2.5rem;
+    }
+    h4 {
+      font-size: 2rem;
+    }
+    h5 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* Breakpoint 4 - Extra large devices */
+  @media screen and (min-width: 1200px) {
+    h1 {
+      font-size: 5rem;
+    }
+    h2 {
+      font-size: 4rem;
+    }
+    h3 {
+      font-size: 3rem;
+    }
+    h4 {
+      font-size: 2.5rem;
+    }
+    h5 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.3rem;
+    }
+  }
+  
