@@ -34,22 +34,26 @@ const TitleScene = () => {
       },
       {
         top: 0,
-        duration: 1
+        ease: "power3.inOut",
+        duration: 0.32
       })
       .fromTo(c1.current, {
         top:'100%'
       },
       {
         top: 0,
-        duration: 1
+        ease: "power3.Out",
+        duration: 0.32
       }, 0.2)
       .fromTo(i1.current,
       {
+        scaleY: -1,
         autoAlpha: 0
       },
       {
         autoAlpha: 1,
-        duration: 1
+        ease: "power1.in",
+        duration: 0.32
       }, 0.4)
       .fromTo(n1.current,
       {
@@ -58,8 +62,9 @@ const TitleScene = () => {
       },
       {
         autoAlpha: 1,
-        scaleX: 1,
-        duration: 1
+        // scaleX: 1,
+        ease: "power3.inOut",
+        duration: 0.32
       }, 0.6)
       .fromTo(e1.current,
       {
@@ -69,7 +74,7 @@ const TitleScene = () => {
       {
         autoAlpha: 1,
         left: 0,
-        duration: 1
+        duration: 0.32
       }, 0.8)
       .fromTo(w2.current,
       {
@@ -85,7 +90,7 @@ const TitleScene = () => {
       },
       {
         autoAlpha: 1,
-        duration: 1.15
+        duration: 0.7
       }, 1)
       .fromTo(l3.current,
       {
@@ -95,7 +100,7 @@ const TitleScene = () => {
       {
         autoAlpha: 1,
         scaleX: 1,
-        duration: 1
+        duration: 0.32
       }, 1.1)
       .fromTo(a3.current, 
       {
@@ -105,7 +110,7 @@ const TitleScene = () => {
       {
         autoAlpha: 1,
         top: 0,
-        duration: 1
+        duration: 0.32
       }, 1.2)
       .fromTo(s3.current,
       {
@@ -115,8 +120,13 @@ const TitleScene = () => {
       {
         autoAlpha: 1,
         left: 0,
-        duration: 1
+        duration: 0.32
       }, 1.4)
+      .to(n1.current,
+        {
+          scaleX: 1,
+          ease: "power3.out",
+        }, 1.4)
       .fromTo(t3.current,
       {
         autoAlpha: 0,
@@ -125,7 +135,7 @@ const TitleScene = () => {
       {
         autoAlpha: 1,
         top: 0,
-        duration: 1
+        duration: 0.32
     }, 1.7)
     .fromTo(s4.current,
     {
@@ -135,7 +145,7 @@ const TitleScene = () => {
     {
       autoAlpha: 1,
       left: 0,
-      duration: 1
+      duration: 0.5
     }, 1.9)
     .fromTo(p4.current,
     {
@@ -145,7 +155,7 @@ const TitleScene = () => {
     {
       autoAlpha: 1,
       scaleX: 1,
-      duration: 1
+      duration: 0.32
     }, 2.2)
     .fromTo(o4.current,
     {
@@ -155,7 +165,7 @@ const TitleScene = () => {
     {
       autoAlpha: 1,
       scaleX: 1,
-      duration: 1
+      duration: 0.32
     }, 2.4)
     .fromTo(k4.current,
       {
@@ -165,7 +175,7 @@ const TitleScene = () => {
       {
         autoAlpha: 1,
         top: 0,
-        duration: 1
+        duration: 0.32
       }, 2.5)
     .fromTo(e4.current,
       {
@@ -175,7 +185,7 @@ const TitleScene = () => {
       {
         autoAlpha: 1,
         scaleX: 1,
-        duration: 1.3
+        duration: 1
       }, 2.6)
       .fromTo(subTitle.current,
       {
@@ -183,7 +193,7 @@ const TitleScene = () => {
       },
       {
         autoAlpha: 1,
-        duration: 1.6
+        duration: 1.1
       }, 3)
     });
 
