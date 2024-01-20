@@ -1,0 +1,24 @@
+#nsc {
+    position: relative;
+    background-color: #f2f2f2;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.nsc-stage {
+    width: 100%;
+    height: 100%;
+}
+
+.slide-sections {
+    width: 100%;
+    height: 100%;
+
+    .slide {
+        height: 33.33vh;
+        width: 100%;
+        background-color: #ffd9b7;
+        // transform: translateX(-100%);
+    }
+}

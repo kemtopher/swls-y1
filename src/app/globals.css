@@ -9,12 +9,13 @@
 body, html {
   margin: 0;
   padding: 0;
+  max-width: 100vw;
   box-sizing: border-box;
 }
 
 .section-boundary {
-  width: 100vw;
-  height: 100vh;
-  min-width: 100%;
-  min-height: 100%;
+  /* width: 100vw;
+  height: 100vh; */
+  /* min-width: 100%; */
+  min-height: 100vh;
 }
