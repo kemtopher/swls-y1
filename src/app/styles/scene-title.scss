@@ -24,7 +24,9 @@ h1.title-word {
     margin: 0;
     font-size: 15em;
     line-height: 1;
-    color: #c8ffce;
+    color: #fffce1;
+    overflow: hidden;
+    display: flex;
     container-name: title-word;
 
     // @container title-word (min-width: 700px) {
@@ -33,6 +35,7 @@ h1.title-word {
 
     .letter-wrap {
         overflow: hidden;
+        // position: relative;
     }
 
     &:first-child {
@@ -53,6 +56,12 @@ h1.title-word {
         // justify-self: end;
     }
 
+    .letter-character {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
     .letter-break .letter-character {
         font-size: 5rem;
     }
@@ -69,6 +78,7 @@ h1.title-word {
     }
 
     .sub-title h3 {
+        color: #c8ffce;
         font-size: 1.75rem;
         font-weight: normal;
     }
