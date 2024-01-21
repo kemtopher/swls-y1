@@ -26,6 +26,9 @@ section#intro {
 
 .intro-body {
     font-size: 4rem;
+    color: #ff0054;
+    mix-blend-mode: multiply;
+    // opacity: 0.8;
 }
 
 .background-title {
@@ -38,7 +41,18 @@ section#intro {
     z-index: 1;
 
     h1 {
-        font-size: 8rem;
-        color: #e1e1e1;
+        font-size: 9rem;
+        line-height: 1.35;
+        color: #8667ff;
+        filter: blur(4px);
+        opacity: 0.5;
+        margin-top: 0;
+
+        &::after {
+            content: "";
+            width: 100vw;
+            height: 100vh
+
+        }
     }
 }

@@ -22,3 +22,31 @@
         // transform: translateX(-100%);
     }
 }
+
+.nsc-content {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+}
+
+.nsc-title {
+    text-align: center;
+    margin: 0;
+    font-size: 5.5rem;
+    color: #5e7017;
+}
+
+.outer-title-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+}

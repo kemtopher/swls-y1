@@ -2,8 +2,14 @@
 
 import {useEffect, useRef} from 'react';
 import { gsap } from 'gsap';
+import { Inter } from 'next/font/google';
 import '../globals.css';
 import '../styles/scene-title.scss';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: '700'
+})
 
 const TitleScene = () => {
   const s1 = useRef(null);
@@ -11,17 +17,21 @@ const TitleScene = () => {
   const n1 = useRef(null);
   const i1 = useRef(null);
   const e1 = useRef(null);
+  const e1Box = useRef(null);
   const w2 = useRef(null);
+  const w2Box = useRef(null);
   const e2 = useRef(null);
   const l3 = useRef(null);
   const a3 = useRef(null);
   const s3 = useRef(null);
   const t3 = useRef(null);
   const s4 = useRef(null);
+  const s4Box = useRef(null);
   const p4 = useRef(null);
   const e4 = useRef(null);
   const o4 = useRef(null);
   const k4 = useRef(null);
+
   const subTitle = useRef(null);
 
   useEffect(() => {
@@ -47,7 +57,6 @@ const TitleScene = () => {
       }, 0.2)
       .fromTo(i1.current,
       {
-        scaleY: -1,
         autoAlpha: 0
       },
       {
@@ -68,6 +77,7 @@ const TitleScene = () => {
       }, 0.6)
       .fromTo(e1.current,
       {
+        scaleY: -1,
         autoAlpha: 0,
         left: '100%'
       },
@@ -76,14 +86,27 @@ const TitleScene = () => {
         left: 0,
         duration: 0.32
       }, 0.8)
+      .to(e1Box.current,
+      {
+        scaleY: -1,
+        duration: 0.5
+      })
       .fromTo(w2.current,
       {
-        top: '100%'
+        top: '100%',
       },
       {
         top: 0,
         duration: 0.9
       }, 0.9)
+      .fromTo([w2.current, w2Box.current],
+        {
+          scaleY: -1
+        },
+        {
+          scaleY: 1,
+          duration: 0.5
+        })
       .fromTo(e2.current,
       {
         autoAlpha: 0
@@ -123,10 +146,10 @@ const TitleScene = () => {
         duration: 0.32
       }, 1.4)
       .to(n1.current,
-        {
-          scaleX: 1,
-          ease: "power3.out",
-        }, 1.4)
+      {
+        scaleX: 1,
+        ease: "power3.out",
+      }, 1.4)
       .fromTo(t3.current,
       {
         autoAlpha: 0,
@@ -140,13 +163,19 @@ const TitleScene = () => {
     .fromTo(s4.current,
     {
       autoAlpha: 0,
-      left: '100%'
+      bottom: '100%',
     },
     {
       autoAlpha: 1,
-      left: 0,
+      bottom: 0,
       duration: 0.5
     }, 1.9)
+    .to(e1Box.current, 
+    {
+      scaleX: -1,
+      scaleY: 1,
+      duration: 0.25
+    }, 2)
     .fromTo(p4.current,
     {
       autoAlpha: 0,
@@ -166,7 +195,7 @@ const TitleScene = () => {
       autoAlpha: 1,
       scaleX: 1,
       duration: 0.32
-    }, 2.4)
+    }, 1.4)
     .fromTo(k4.current,
       {
         autoAlpha: 0,
@@ -176,7 +205,7 @@ const TitleScene = () => {
         autoAlpha: 1,
         top: 0,
         duration: 0.32
-      }, 2.5)
+      }, 1.5)
     .fromTo(e4.current,
       {
         autoAlpha: 0,
@@ -195,6 +224,11 @@ const TitleScene = () => {
         autoAlpha: 1,
         duration: 1.1
       }, 3)
+      .to(e1Box.current, 
+      {
+        scaleX: 1,
+        duration: 0.25
+      }, 3)
     });
 
     return () => ctx.revert();
@@ -203,7 +237,7 @@ const TitleScene = () => {
     return (
       <section id="title" className="section-boundary">
         <div className="title-grid">
-          <h1 className="title-container title-word">
+          <h1 className={`title-container title-word ${inter.className}`}>
             <span className="letter-wrap">
               <span className="letter-character s1" ref={s1}>S</span>
             </span>
@@ -216,14 +250,14 @@ const TitleScene = () => {
             <span className="letter-wrap">
               <span className="letter-character c1" ref={c1}>c</span>
             </span>
-            <span className="letter-wrap">
+            <span className="letter-wrap" ref={e1Box}>
               <span className="letter-character e1" ref={e1}>e</span>
             </span>
           </h1>
           <h1 className="title-container title-word">
             <span className="justify-words">
               <span>
-                <span className="letter-wrap">
+                <span className="letter-wrap" ref={w2Box}>
                   <span className="letter-character" ref={w2}>W</span>
                 </span>
                 <span className="letter-wrap">

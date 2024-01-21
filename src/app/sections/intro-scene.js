@@ -3,15 +3,21 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Archivo_Black } from 'next/font/google';
 import '../globals.css';
 import '../styles/scene-intro.scss';
 gsap.registerPlugin(ScrollTrigger);
 
+const archivo = Archivo_Black({
+    subsets: ['latin'],
+    weight: '400'
+});
+
 const IntroScene = () => {
     const introContainer = useRef();
     const backgroundText = useRef();
+    const bgText = useRef();
 
-    
     useEffect(() => {
         let ctx = gsap.context(() => {
 
@@ -27,7 +33,18 @@ const IntroScene = () => {
                     end: "bottom bottom",
                     markers: true,
                 }
-            });
+            })
+            // gsap.to(bgText.current, 
+            // {
+            //     filter: "blur(3px)",
+            //     scrollTrigger: {
+            //         trigger: introContainer.current,
+            //         pin: backgroundText.current,
+            //         start: "top top",
+            //         end: "+=100",
+            //         markers: true,
+            //     }
+            // })
 
         }, introContainer);
 
@@ -43,7 +60,7 @@ const IntroScene = () => {
                     </h4>
                 </span>
                 <div className="background-title" ref={backgroundText}>
-                    <h1 className="intro-title"><bold>WHAT THE HELL AM I LOOKING AT?</bold></h1>
+                    <h1 className={`intro-title ${archivo.className}`} ref={bgText}><bold>WHAT AM I LOOKING AT RIGHT NOW?</bold></h1>
                 </div>
             </div>
         </section>
