@@ -3,20 +3,22 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Archivo_Black } from 'next/font/google';
+import { Oswald } from 'next/font/google';
 import '../globals.css';
 import '../styles/scene-film.scss';
+import { FilmLeader } from '../components/film-leader';
 gsap.registerPlugin(ScrollTrigger);
 
-const archivo = Archivo_Black({
+const archivo = Oswald({
     subsets: ['latin'],
-    weight: '400'
+    weight: '600'
 });
 
 const FilmScene = () => {
     const filmContainer = useRef(null);
 
     useEffect(() => {
+        // gsap.set(img, { attr: { src: newSRC } });
         let ctx = gsap.context(() => {
 
             
@@ -30,7 +32,7 @@ const FilmScene = () => {
         <section id="film" className="section-boundary" ref={filmContainer}>
             <div className="film-grid">
                 <span className="film-container">
-
+                    <FilmLeader status='' />
                 </span>
             </div>
         </section>

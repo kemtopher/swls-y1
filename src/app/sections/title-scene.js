@@ -61,16 +61,16 @@ const TitleScene = () => {
         y: '-75%',
         ease: "none",
       }, 0.5)
-      .set(n1.current,
-      {
-        y: 0
-      }, 1.15)
-      .to(n1.current,
-      {
-        duration: 0.75,
-        y: '-75%',
-        ease: "none",
-      }, 1.15)
+      // .set(n1.current,
+      // {
+      //   y: 0
+      // }, 1.15)
+      // .to(n1.current,
+      // {
+      //   duration: 0.75,
+      //   y: '-75%',
+      //   ease: "none",
+      // }, 1.15)
       // .set(n1.current,
       // {
       //   y: 0

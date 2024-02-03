@@ -32,7 +32,7 @@ const IntroScene = () => {
                 scrollTrigger: {
                     trigger: backgroundText.current,
                     start: "top center",
-                    end: "+=200",
+                    end: "top top",
                     // markers: true,
                     scrub: true
                 }

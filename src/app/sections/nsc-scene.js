@@ -29,7 +29,21 @@ const NscScene = () => {
     
     useEffect(() => {
         let ctx = gsap.context(() => {
-            const tl = gsap.timeline();
+            const nscTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: nscContainer.current,
+                    start: "top 60%",
+                    markers: false,
+                }
+            });
+
+            const posterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: nscContainer.current,
+                    start: "top 40%",
+                    markers: false,
+                }
+            });
 
             gsap.fromTo([slide0.current, slide1.current, slide2.current], {
                 x: '-100%'
@@ -43,8 +57,9 @@ const NscScene = () => {
                     markers: false,
                 }
             })
-            
-            gsap.fromTo([title0.current, title1.current, title2.current],
+
+            nscTl
+            .fromTo([title0.current, title1.current, title2.current],
             {
                 autoAlpha: 0,
                 y: "+=50"
@@ -53,41 +68,33 @@ const NscScene = () => {
                 autoAlpha: 1,
                 y: 0,
                 delay: 0.55,
-                duration: 1.5,
-                scrollTrigger: {
-                    trigger: nscContainer.current,
-                    start: "top center",
-                    markers: false,
-                }
+                duration: 1,
             })
 
-            const nscTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: nscContainer.current,
-                    start: "top 100px",
-                    markers: false,
-                }
-            });
-
-            nscTl
+            posterTl
             .from(poster1.current, {
                 bottom: '-63%',
                 right: '-26%',
-                ease: 'Power1.out',
-                duration: 1.25,
-            })
+                duration: 0.55,
+                ease: 'Power1.out'
+            }, 0.5)
             .from(poster5.current, {
                 top: "-50%",
-                duration: 1.25,
-            }, 0)
+                duration: 0.55,
+                ease: 'Power1.out'
+            }, 0.5)
             .from(poster3.current, {
                 autoAlpha: 0,
-                duration: 1.75
-            }, 0.5)
+                duration: 0.55,
+                ease: 'Power1.out'
+            }, 0.65)
             .from(poster2.current, {
-                right: '-50%',
-                duration: 1.25
-            }, 0.4)
+                // right: '-50%',
+                autoAlpha: 0,
+                y: '25px',
+                duration: 0.55,
+                ease: 'Power1.out'
+            }, 0.65)
         }, nscContainer);
 
         return () => ctx.revert();
