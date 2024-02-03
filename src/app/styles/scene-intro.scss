@@ -24,11 +24,15 @@ section#intro {
     z-index: 2;
 }
 
+.intro-title {
+    transition: all 1.2s ease-in-out;
+}
+
 .intro-body {
     font-size: 4rem;
     color: #ff0054;
     mix-blend-mode: multiply;
-    // opacity: 0.8;
+    opacity: 0.85;
 }
 
 .background-title {

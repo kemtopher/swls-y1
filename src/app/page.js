@@ -2,6 +2,7 @@ import Image from "next/image";
 import TitleScene from "./sections/title-scene";
 import IntroScene from "./sections/intro-scene";
 import NscScene from "./sections/nsc-scene";
+import FilmScene from "./sections/film-scene";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <TitleScene />
       <IntroScene />
       <NscScene />
+      <FilmScene />
     </main>
   );
 }

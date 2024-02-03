@@ -13,9 +13,9 @@ body, html {
   box-sizing: border-box;
 }
 
-.section-boundary {
-  /* width: 100vw;
-  height: 100vh; */
-  /* min-width: 100%; */
-  min-height: 100vh;
+section.section-boundary {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }

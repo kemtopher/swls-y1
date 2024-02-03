@@ -22,9 +22,15 @@ const NscScene = () => {
     const title0 = useRef();
     const title1 = useRef();
     const title2 = useRef();
+    const poster1 = useRef();
+    const poster2 = useRef();
+    const poster3 = useRef();
+    const poster5 = useRef();
     
     useEffect(() => {
         let ctx = gsap.context(() => {
+            const tl = gsap.timeline();
+
             gsap.fromTo([slide0.current, slide1.current, slide2.current], {
                 x: '-100%'
             },
@@ -34,23 +40,54 @@ const NscScene = () => {
                 scrollTrigger: {
                     trigger: nscContainer.current,
                     start: "top center",
-                    markers: true,
+                    markers: false,
                 }
             })
+            
             gsap.fromTo([title0.current, title1.current, title2.current],
             {
-                autoAlpha: 0
+                autoAlpha: 0,
+                y: "+=50"
             },
             {
                 autoAlpha: 1,
+                y: 0,
                 delay: 0.55,
                 duration: 1.5,
                 scrollTrigger: {
                     trigger: nscContainer.current,
                     start: "top center",
-                    markers: true,
+                    markers: false,
                 }
             })
+
+            const nscTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: nscContainer.current,
+                    start: "top 100px",
+                    markers: false,
+                }
+            });
+
+            nscTl
+            .from(poster1.current, {
+                bottom: '-63%',
+                right: '-26%',
+                ease: 'Power1.out',
+                duration: 1.25,
+            })
+            .from(poster5.current, {
+                top: "-50%",
+                duration: 1.25,
+            }, 0)
+            .from(poster3.current, {
+                autoAlpha: 0,
+                duration: 1.75
+            }, 0.5)
+            .from(poster2.current, {
+                right: '-50%',
+                duration: 1.25
+            }, 0.4)
         }, nscContainer);
 
         return () => ctx.revert();
@@ -93,10 +130,19 @@ const NscScene = () => {
                         </div>
                     </div>
                 </div>
+                
                 <div className="slide-sections">
                     <div className="slide" ref={slide0}></div>
                     <div className="slide" ref={slide1}></div>
                     <div className="slide" ref={slide2}></div>
+                </div>
+                
+                <div className="poster-section">
+                    <img className='nsc-poster1' ref={poster1} src='/1_Poster_Asian_Womxn_r83mgp.png' alt='Night Snack Club poster image'/>
+                    <img className='nsc-poster2' ref={poster2} src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
+                    <img className='nsc-poster3' ref={poster3} src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
+                    {/* <img className='nsc-poster4' src='/23_Poster_Blogworms_w8zdvi.png' alt='Night Snack Club poster image'/> */}
+                    <img className='nsc-poster5' ref={poster5} src='/35_Poster_Night_Snacks_ssrvzz.png' alt='Night Snack Club poster image'/>
                 </div>
             </div>
         </section>

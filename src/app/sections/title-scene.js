@@ -1,10 +1,12 @@
 "use client";
 
 import {useEffect, useRef} from 'react';
-import { gsap } from 'gsap';
+import { CustomEase, gsap } from 'gsap';
 import { Inter } from 'next/font/google';
+import { CharI } from '../assets/type_characters';
 import '../globals.css';
 import '../styles/scene-title.scss';
+// gsap.registerPlugin(CustomEase);
 
 const inter = Inter({
   subsets: ['latin'],
@@ -36,17 +38,70 @@ const TitleScene = () => {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+      
+      const nTimeline = gsap.timeline();
+      nTimeline
+      .fromTo(n1.current,
+      {
+        y: '25%'
+      },
+      {
+        duration: 0.5,
+        y: '-75%',
+        ease: "none",
+      })
+      .set(n1.current,
+      {
+        y: 0
+      }, 0.5)
+      .to(n1.current,
+      {
+        // filter: "blur(8px)",
+        duration: 0.65,
+        y: '-75%',
+        ease: "none",
+      }, 0.5)
+      .set(n1.current,
+      {
+        y: 0
+      }, 1.15)
+      .to(n1.current,
+      {
+        duration: 0.75,
+        y: '-75%',
+        ease: "none",
+      }, 1.15)
+      // .set(n1.current,
+      // {
+      //   y: 0
+      // }, 1.90)
+      // .to(n1.current,
+      // {
+      //   duration: 0.85,
+      //   y: '-75%',
+      //   ease: "none",
+      // }, 1.90);
 
+      const tl = gsap.timeline();
       tl
       .fromTo(s1.current, {
         top: '-100%'
       },
       {
         top: 0,
-        ease: "power3.inOut",
-        duration: 0.32
+        ease: 'bounce.out',
+        duration: 2
       })
+      .fromTo(i1.current,
+      {
+        autoAlpha: 0
+      },
+      {
+        autoAlpha: 1,
+        filter: 'blur(80%)',
+        ease: "power1.in",
+        duration: 2
+      }, 1.8)
       .fromTo(c1.current, {
         top:'100%'
       },
@@ -54,49 +109,33 @@ const TitleScene = () => {
         top: 0,
         ease: "power3.Out",
         duration: 0.32
-      }, 0.2)
-      .fromTo(i1.current,
+      }, 2.4)
+      .add(nTimeline, 2)
+      .fromTo(e1.current,
       {
-        autoAlpha: 0
+        scaleY: 1,
+        autoAlpha: 0,
+        left: '100%'
       },
       {
+        scaleY: -1,
         autoAlpha: 1,
-        ease: "power1.in",
+        left: 0,
         duration: 0.32
-      }, 0.4)
-      .fromTo(n1.current,
+      }, 1.8)
+      // .to(e1Box.current,
+      // {
+      //   scaleY: -1,
+      //   duration: 0.5
+      // })
+      .fromTo(w2.current,
       {
         autoAlpha: 0,
         scaleX: -1
       },
       {
+        scale: 1,
         autoAlpha: 1,
-        // scaleX: 1,
-        ease: "power3.inOut",
-        duration: 0.32
-      }, 0.6)
-      .fromTo(e1.current,
-      {
-        scaleY: -1,
-        autoAlpha: 0,
-        left: '100%'
-      },
-      {
-        autoAlpha: 1,
-        left: 0,
-        duration: 0.32
-      }, 0.8)
-      .to(e1Box.current,
-      {
-        scaleY: -1,
-        duration: 0.5
-      })
-      .fromTo(w2.current,
-      {
-        top: '100%',
-      },
-      {
-        top: 0,
         duration: 0.9
       }, 0.9)
       .fromTo([w2.current, w2Box.current],
@@ -127,14 +166,14 @@ const TitleScene = () => {
       }, 1.1)
       .fromTo(a3.current, 
       {
-        autoAlpha: 0,
-        top: '100%'
+        autoAlpha: 0
       },
       {
         autoAlpha: 1,
-        top: 0,
-        duration: 0.32
-      }, 1.2)
+        filter: 'blur(80%)',
+        ease: "power1.in",
+        duration: 2
+      }, 2)
       .fromTo(s3.current,
       {
         autoAlpha:0,
@@ -224,11 +263,11 @@ const TitleScene = () => {
         autoAlpha: 1,
         duration: 1.1
       }, 3)
-      .to(e1Box.current, 
-      {
-        scaleX: 1,
-        duration: 0.25
-      }, 3)
+      // .to(e1Box.current, 
+      // {
+      //   scaleX: 1,
+      //   duration: 0.25
+      // }, 3)
     });
 
     return () => ctx.revert();
@@ -243,9 +282,15 @@ const TitleScene = () => {
             </span>
             <span className="letter-wrap">
               <span className="letter-character i1" ref={i1}>i</span>
+              {/* <span className="letter-character i1" ref={i1}><CharI /></span> */}
             </span>
-            <span className="letter-wrap" ref={n1}>
-              <span className="letter-character n1">n</span>
+            <span className="letter-wrap">
+              <div className="n-slide" ref={n1}>
+                <span className="letter-character n1">n</span>
+                <span className="letter-character n1">n</span>
+                <span className="letter-character n1">n</span>
+                <span className="letter-character n1">n</span>
+              </div>
             </span>
             <span className="letter-wrap">
               <span className="letter-character c1" ref={c1}>c</span>
