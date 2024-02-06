@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Oswald } from 'next/font/google';
-import useWindowDimensions from '../components/useWindowDimensions';
-import { VideoControls } from '../assets/video-controls';
 import '../globals.css';
 import '../styles/scene-film.scss';
 gsap.registerPlugin(ScrollTrigger);
@@ -16,12 +14,13 @@ const oswald = Oswald({
 });
 
 const FilmScene = () => {
-    // const { height, width } = useWindowDimensions();
+    const [toggleVid, setToggleVid] = useState(false);
 
     const sectionContainer = useRef(null);
     const filmContainer = useRef(null);
     const iconStage = useRef(null);
     const videoControl = useRef(null);
+    const videoStage = useRef(null);
     const charA = useRef(null);
     const charF = useRef(null);
     const charP = useRef(null);
@@ -48,9 +47,6 @@ const FilmScene = () => {
                 trigger: sectionContainer.current,
                 pin: filmContainer.current,
                 start: "top top",
-                // end: "bottom bottom",
-                // end: () => filmContainer.current.offsetHeight + window.innerHeight
-                // onUpdate: () => console.log(window.innerHeight)
             })
 
             filmTitleTl
@@ -100,14 +96,32 @@ const FilmScene = () => {
                     trigger: videoControl.current,
                     pin: videoControl.current,
                     start: "top top",
-                    // end: "bottom bottom",
-                    markers: true
                 }
             })
         });
 
         return () => ctx.revert();
     }, []);
+
+    useEffect(() => {
+        let ctx = gsap.context(() => {
+            const toggleVidTl = gsap.timeline({paused: true});
+            
+            toggleVidTl
+            .to(videoStage.current, {
+                autoAlpha: 1,
+                duration: 1
+            })
+
+            if (toggleVid) {
+                toggleVidTl.play();
+            } else {
+                toggleVidTl.revert();
+            }
+        });
+
+        return () => ctx.revert();
+    }, [toggleVid])
 
     return (
         <section id="film" ref={sectionContainer} className="section-boundary">
@@ -164,7 +178,17 @@ const FilmScene = () => {
                 </div>
 
                 <div ref={videoControl} className="video-control">
-                    <img ref={stickersIcon} className='afp-icon afp-icon7' src='/afp_stickers.png' alt='ATLFilmParty icon'/>
+                    <button className="video-toggle" onClick={() => setToggleVid(true)}>
+                        <img ref={stickersIcon} className='afp-icon afp-icon7' src='/afp_stickers.png' alt='ATLFilmParty icon'/>
+                    </button>
+                </div>
+
+                <div className="video-stage" ref={videoStage} role='button' onClick={() => setToggleVid(false)}>
+                    <div className="video-backdrop">
+                        <div className="video-container">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/GtFMJJbVCXA?si=BqXyhtv6eawKK6EM&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
