@@ -1,54 +1,134 @@
+@import './mixins.module.scss';
+
 section#film {
     background-color: #fed103;
-    height: 100vh;
-    width: 100vw;
 }
 
 .film-grid {
-    height: 100%;
-
-    .film-container {
-        height: 100%;
-    }
-}
-
-.film-leader-container {
     width: 100%;
     height: 100%;
     position: relative;
+}
+
+.film-title-grid {
+    width: 100%;
+    height: 100vh;
+    // max-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+    position: absolute;
     top: 0;
     left: 0;
+    z-index: 9;
 
-    .circle-outer, .circle-inner {
-        max-width: 75vw;
-        max-height: 75vh;
-        border: 0.75rem solid #ffffff;
-        padding: 1.5rem;
-        border-radius: 100%;
-        aspect-ratio: 1 /1;
+    @include respond(md) {
+        grid-template-columns: repeat(8, 1fr);
+    } 
+
+    .grid-character-wrap {
+        grid-row-start: 2;
+        overflow: hidden;
+        
+        &.line-2 {
+            grid-row-start: 3;
+        }
+
+        .grid-character {
+            font-size: 13em;
+            line-height: 1;
+            position: relative;
+        }
     }
+}
 
-    .circle-outer {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+.paralax-container {
+    padding: 100vh 0 15vh;
 
-    .circle-inner {
-        position: relative;
+    .paralax-stage {
+        display: flex;
+        flex-direction: column;
+        // gap: 15vw;
 
-        .countdown-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0;
+        .para-row {
+            padding: 0 10%;
+            display: flex;
+            justify-content: space-between;
 
-            h1 {
-                font-size: 15rem;
-                margin: 0;
+            &.fl-end {
+                justify-content: flex-end;
             }
+
+            &.center {
+                justify-content: center;
+            }
+
+            &.no-r-pad {
+                padding-right: 0;
+            }
+
+            &.pbr-row {
+                max-height: 50vh;
+            }
+        }
+    }
+
+    .para-card {
+        width: 50%;
+
+        &.sm {
+            width: 25%;
+        }
+
+        &.md {
+            width: calc(100% / 3);
+        }
+
+        &.lg {
+            width: 65%;
+        }
+
+        &.bottom {
+            align-self: flex-end;
+        }
+        
+        &.right {
+            text-align: right;
+        }
+
+        &.left {
+            text-align: left;
+        }
+
+        &.afp-crew {
+            transform: rotate(5deg);
+        }
+
+        &.pbr-card {
+            align-self: center;
+        }
+
+        img {
+            width: 100%;
+
+            &.eyeball-icon {
+                width: 65%;
+            }
+
+            &.polaroid {
+
+            }
+        }
+    }
+
+    .about-text {
+        // padding-top: 10vw;
+
+        p {
+            font-size: 4rem;
+            color: #f82645;
         }
     }
 }

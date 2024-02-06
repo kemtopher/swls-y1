@@ -1,3 +1,5 @@
+@import './mixins.module.scss';
+
 section#intro {
     position: relative;
     background-color: #f2f2f2;
@@ -11,17 +13,18 @@ section#intro {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(11, 1fr);
-    // grid-template-rows: repeat(6, 1fr);
-    gap: 0;
-
     padding: 2rem;
     box-sizing: border-box;
 }
 
 .intro-container {
-    padding: 40vh 0;
-    grid-column: 2 / 10;
+    padding: 40vh 0 0;
+    grid-column: 1 / 11;
     z-index: 2;
+
+    @include respond(md) {
+        grid-column: 2 / 10;
+    }
 }
 
 .intro-title {
@@ -29,10 +32,14 @@ section#intro {
 }
 
 .intro-body {
-    font-size: 4rem;
+    font-size: 2rem;
     color: #ff0054;
     mix-blend-mode: multiply;
     opacity: 0.85;
+
+    @include respond(md) {
+        font-size: 4rem;
+    }
 }
 
 .background-title {

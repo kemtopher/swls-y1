@@ -53,8 +53,8 @@ const NscScene = () => {
                 stagger: 0.2,
                 scrollTrigger: {
                     trigger: nscContainer.current,
-                    start: "top center",
-                    markers: false,
+                    start: "top 65%",
+                    // markers: true,
                 }
             })
 
@@ -148,7 +148,6 @@ const NscScene = () => {
                     <img className='nsc-poster1' ref={poster1} src='/1_Poster_Asian_Womxn_r83mgp.png' alt='Night Snack Club poster image'/>
                     <img className='nsc-poster2' ref={poster2} src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
                     <img className='nsc-poster3' ref={poster3} src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
-                    {/* <img className='nsc-poster4' src='/23_Poster_Blogworms_w8zdvi.png' alt='Night Snack Club poster image'/> */}
                     <img className='nsc-poster5' ref={poster5} src='/35_Poster_Night_Snacks_ssrvzz.png' alt='Night Snack Club poster image'/>
                 </div>
             </div>

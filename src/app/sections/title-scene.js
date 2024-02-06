@@ -54,13 +54,13 @@ const TitleScene = () => {
       {
         y: 0
       }, 0.5)
-      .to(n1.current,
-      {
-        // filter: "blur(8px)",
-        duration: 0.65,
-        y: '-75%',
-        ease: "none",
-      }, 0.5)
+      // .to(n1.current,
+      // {
+      //   // filter: "blur(8px)",
+      //   duration: 0.65,
+      //   y: '-75%',
+      //   ease: "none",
+      // }, 0.5)
       // .set(n1.current,
       // {
       //   y: 0

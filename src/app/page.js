@@ -12,6 +12,7 @@ export default function Home() {
       <IntroScene />
       <NscScene />
       <FilmScene />
+      <IntroScene />
     </main>
   );
 }

@@ -17,24 +17,23 @@ const IntroScene = () => {
     const introContainer = useRef();
     const backgroundText = useRef()
     const bodyText = useRef();
-    const whatText = useRef();
 
     useEffect(() => {
         let ctx = gsap.context(() => {
-            const tl = gsap.timeline();
 
-            tl
+            const bgTextTl = gsap.timeline();
+
+            bgTextTl
             .fromTo(backgroundText.current, {
                 autoAlpha: 0
             },
             {
-                autoAlpha: 1,
+                autoAlpha: 0.25,
                 scrollTrigger: {
                     trigger: backgroundText.current,
-                    start: "top center",
+                    start: "top 40%",
                     end: "top top",
-                    // markers: true,
-                    scrub: true
+                    scrub: true,
                 }
             })
             .to(backgroundText.current, {
@@ -43,7 +42,6 @@ const IntroScene = () => {
                     pin: backgroundText.current,
                     start: "top top",
                     end: "bottom bottom",
-                    markers: false,
                 }
             }, 0)
 
@@ -52,7 +50,6 @@ const IntroScene = () => {
                 scrollTrigger: {
                     trigger: introContainer.current,
                     start: "top top",
-                    markers: false
                 }
             })
 
@@ -70,7 +67,7 @@ const IntroScene = () => {
                     </h4>
                 </span>
                 <div className="background-title" ref={backgroundText}>
-                    <h1 className={`intro-title ${archivo.className}`} ref={whatText}><bold>WHAT AM I LOOKING AT RIGHT NOW?</bold></h1>
+                    <h1 className={`intro-title ${archivo.className}`}>WHAT AM I <br /> LOOKING <br />AT RIGHT <br />NOW?</h1>
                 </div>
             </div>
         </section>
