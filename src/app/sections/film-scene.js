@@ -21,6 +21,7 @@ const FilmScene = () => {
     const sectionContainer = useRef(null);
     const filmContainer = useRef(null);
     const iconStage = useRef(null);
+    const videoControl = useRef(null);
     const charA = useRef(null);
     const charF = useRef(null);
     const charP = useRef(null);
@@ -47,7 +48,9 @@ const FilmScene = () => {
                 trigger: sectionContainer.current,
                 pin: filmContainer.current,
                 start: "top top",
-                end: "bottom bottom",
+                // end: "bottom bottom",
+                // end: () => filmContainer.current.offsetHeight + window.innerHeight
+                // onUpdate: () => console.log(window.innerHeight)
             })
 
             filmTitleTl
@@ -67,6 +70,7 @@ const FilmScene = () => {
             })
 
             gsap
+            .timeline()
             .to(pbrTile.current, {
                 y: -pbrTile.current.offsetHeight / 2,
                 ease: 'none',
@@ -76,8 +80,6 @@ const FilmScene = () => {
                     scrub: true,
                 }
             })
-
-            gsap
             .to(crewPhoto.current, {
                 y: crewPhoto.current.offsetHeight / -2,
                 ease: 'none',
@@ -85,6 +87,21 @@ const FilmScene = () => {
                     trigger: crewPhoto.current,
                     start: "top bottom",
                     scrub: true,
+                }
+            })
+            
+            gsap.fromTo(videoControl.current, {
+                autoAlpha: 0
+            },{
+                autoAlpha: 1,
+                duration: 0.5,
+                reversed: true,
+                scrollTrigger: {
+                    trigger: videoControl.current,
+                    pin: videoControl.current,
+                    start: "top top",
+                    // end: "bottom bottom",
+                    markers: true
                 }
             })
         });
@@ -138,13 +155,16 @@ const FilmScene = () => {
                                 <img ref={crewPhoto} className='afp-icon' src='/afp_crew.png' alt='ATLFilmParty icon'/>
                             </span>
                         </div>
-                        <div className="para-row center">
+                        {/* <div className="para-row center">
                             <span className="para-card">
                                 <img ref={stickersIcon} className='afp-icon afp-icon7' src='/afp_stickers.png' alt='ATLFilmParty icon'/>
-                                {/* <VideoControls ref={stickersIcon} fillColor='#f82645' /> */}
                             </span>
-                        </div>
+                        </div> */}
                     </div>
+                </div>
+
+                <div ref={videoControl} className="video-control">
+                    <img ref={stickersIcon} className='afp-icon afp-icon7' src='/afp_stickers.png' alt='ATLFilmParty icon'/>
                 </div>
             </div>
         </section>

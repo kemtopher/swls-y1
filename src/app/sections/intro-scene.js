@@ -67,7 +67,7 @@ const IntroScene = () => {
                     </h4>
                 </span>
                 <div className="background-title" ref={backgroundText}>
-                    <h1 className={`intro-title ${archivo.className}`}>WHAT AM I <br /> LOOKING <br />AT RIGHT <br />NOW?</h1>
+                    <h1 className={`intro-title ${archivo.className}`}>WELCOME<br />TO THE<br />FIRST<br />SWLS</h1>
                 </div>
             </div>
         </section>

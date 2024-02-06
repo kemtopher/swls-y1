@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { horizontalLoop } from '../assets/horizontalLoop';
 import localfont from 'next/font/local';
 import '../globals.css';
 import '../styles/scene-nsc.scss';
@@ -15,6 +16,12 @@ const bigCaslon = localfont({
 
 const NscScene = () => {
     const nscContainer = useRef();
+    const scrollContainer = useRef();
+    const titleSection = useRef();
+    const titleTop = useRef();
+    const titleMid = useRef();
+    const titleBot = useRef();
+    const stage = useRef();
     const slide0 = useRef();
     const slide1 = useRef();
     const slide2 = useRef();
@@ -29,72 +36,103 @@ const NscScene = () => {
     
     useEffect(() => {
         let ctx = gsap.context(() => {
-            const nscTl = gsap.timeline({
+
+            gsap
+            .timeline({
                 scrollTrigger: {
                     trigger: nscContainer.current,
-                    start: "top 60%",
-                    markers: false,
+                    start: "top top",
+                    pin: true,
+                    scrub: true,
+                    end: () => "+=" + scrollContainer.current.offsetWidth,
+                    // markers: true,
+                    // onUpdate: () => console.log('herhe')
                 }
-            });
+            })
+            .to(scrollContainer.current, {
+                xPercent: -100
+            }, 0)
+            .fromTo([titleTop.current, titleBot.current], {
+                xPercent: -100
+            }, {
+                xPercent: 100,
+            }, 0)
+            .to(titleMid.current, {
+                xPercent: -100
+            }, 0)
 
-            const posterTl = gsap.timeline({
+            // gsap
+            // .timeline({
+            //     scrollTrigger: {
+            //         trigger: nscContainer.current,
+            //         start: "top 60%",
+            //     }
+            // })
+            // .fromTo([title0.current, title1.current, title2.current],
+            // {
+            //     autoAlpha: 0,
+            //     y: "+=50"
+            // },
+            // {
+            //     autoAlpha: 1,
+            //     y: 0,
+            //     delay: 0.55,
+            //     duration: 1,
+            // })
+
+            gsap
+            .timeline({
                 scrollTrigger: {
                     trigger: nscContainer.current,
-                    start: "top 40%",
-                    markers: false,
+                    start: "top 65%",
                 }
-            });
-
-            gsap.fromTo([slide0.current, slide1.current, slide2.current], {
+            })
+            .fromTo([slide0.current, slide1.current, slide2.current], {
                 x: '-100%'
             },
             {
                 x: '0%',
                 stagger: 0.2,
-                scrollTrigger: {
-                    trigger: nscContainer.current,
-                    start: "top 65%",
-                    // markers: true,
-                }
             })
-
-            nscTl
-            .fromTo([title0.current, title1.current, title2.current],
-            {
-                autoAlpha: 0,
-                y: "+=50"
-            },
-            {
+            .fromTo(titleSection.current, {
+                autoAlpha: 0
+            }, {
                 autoAlpha: 1,
-                y: 0,
-                delay: 0.55,
-                duration: 1,
+                duration: 2
             })
 
-            posterTl
-            .from(poster1.current, {
-                bottom: '-63%',
-                right: '-26%',
-                duration: 0.55,
-                ease: 'Power1.out'
-            }, 0.5)
-            .from(poster5.current, {
-                top: "-50%",
-                duration: 0.55,
-                ease: 'Power1.out'
-            }, 0.5)
-            .from(poster3.current, {
-                autoAlpha: 0,
-                duration: 0.55,
-                ease: 'Power1.out'
-            }, 0.65)
-            .from(poster2.current, {
-                // right: '-50%',
-                autoAlpha: 0,
-                y: '25px',
-                duration: 0.55,
-                ease: 'Power1.out'
-            }, 0.65)
+            // const posterTl = gsap.timeline({
+            //     scrollTrigger: {
+            //         trigger: nscContainer.current,
+            //         start: "top 40%",
+            //         markers: false,
+            //     }
+            // });
+
+            // posterTl
+            // .from(poster1.current, {
+            //     bottom: '-63%',
+            //     right: '-26%',
+            //     duration: 0.55,
+            //     ease: 'Power1.out'
+            // }, 0.5)
+            // .from(poster5.current, {
+            //     top: "-50%",
+            //     duration: 0.55,
+            //     ease: 'Power1.out'
+            // }, 0.5)
+            // .from(poster3.current, {
+            //     autoAlpha: 0,
+            //     duration: 0.55,
+            //     ease: 'Power1.out'
+            // }, 0.65)
+            // .from(poster2.current, {
+            //     // right: '-50%',
+            //     autoAlpha: 0,
+            //     y: '25px',
+            //     duration: 0.55,
+            //     ease: 'Power1.out'
+            // }, 0.65)
         }, nscContainer);
 
         return () => ctx.revert();
@@ -102,8 +140,8 @@ const NscScene = () => {
 
     return (
         <section id="nsc" className="section-boundary" ref={nscContainer}>
-            <div className="nsc-stage">
-                <div className={`nsc-content ${bigCaslon.className}`}>
+            <div ref={stage} className="nsc-stage">
+                {/* <div className={`nsc-content ${bigCaslon.className}`}>
                     <div className="outer-title-flex" ref={outerTitle}>
                         <div className="title-flex">
                             <span>
@@ -136,19 +174,66 @@ const NscScene = () => {
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 
                 <div className="slide-sections">
                     <div className="slide" ref={slide0}></div>
                     <div className="slide" ref={slide1}></div>
                     <div className="slide" ref={slide2}></div>
                 </div>
-                
-                <div className="poster-section">
-                    <img className='nsc-poster1' ref={poster1} src='/1_Poster_Asian_Womxn_r83mgp.png' alt='Night Snack Club poster image'/>
-                    <img className='nsc-poster2' ref={poster2} src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
-                    <img className='nsc-poster3' ref={poster3} src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
-                    <img className='nsc-poster5' ref={poster5} src='/35_Poster_Night_Snacks_ssrvzz.png' alt='Night Snack Club poster image'/>
+
+                <div ref={titleSection} className={`title-sections ${bigCaslon.className}`}>
+                    <div className="title-slide">
+                        <div ref={titleTop} className="slide-container">
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                            <span className="title">NIGHT</span>
+                        </div>
+                    </div>
+                    <div className="title-slide">
+                        <div ref={titleMid} className="slide-container slideOpposite">
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                            <span className="title title2">SNACK</span>
+                        </div>
+                    </div>
+                    <div className="title-slide">
+                        <div ref={titleBot} className="slide-container">
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                            <span className="title">CLUB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="horizontal-container">
+                    <div ref={scrollContainer} className="scroll-container">
+                        <img className='nsc-poster1' ref={poster1} src='/1_Poster_Asian_Womxn_r83mgp.png' alt='Night Snack Club poster image'/>
+                        <img className='nsc-poster2' ref={poster2} src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
+                        <img className='nsc-poster3' ref={poster3} src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
+                        <img className='nsc-poster5' ref={poster5} src='/35_Poster_Night_Snacks_ssrvzz.png' alt='Night Snack Club poster image'/>
+                    </div>
                 </div>
             </div>
         </section>
