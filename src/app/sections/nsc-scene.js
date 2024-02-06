@@ -45,8 +45,6 @@ const NscScene = () => {
                     pin: true,
                     scrub: true,
                     end: () => "+=" + scrollContainer.current.offsetWidth,
-                    // markers: true,
-                    // onUpdate: () => console.log('herhe')
                 }
             })
             .to(scrollContainer.current, {
@@ -105,7 +103,6 @@ const NscScene = () => {
             //     scrollTrigger: {
             //         trigger: nscContainer.current,
             //         start: "top 40%",
-            //         markers: false,
             //     }
             // });
 
