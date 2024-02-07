@@ -37,6 +37,7 @@ const NscScene = () => {
     const poster6 = useRef(null);
     const poster7 = useRef(null);
     const poster8 = useRef(null);
+    const poster9 = useRef(null);
     
     useEffect(() => {
         let ctx = gsap.context(() => {
@@ -94,10 +95,10 @@ const NscScene = () => {
                 xPercent: -88
             },0)
             .to(poster6.current, {
-                xPercent: -18
+                xPercent: -48
             },0)
             .to(poster8.current, {
-                xPercent: -65
+                xPercent: -95
             })
 
             gsap
@@ -175,8 +176,9 @@ const NscScene = () => {
                         <img className='nsc-poster4 fl-end' ref={poster4} src='/34_Hui_sudefj.jpg' alt='Night Snack Club poster image'/>
                         <img className='nsc-poster5 fl-start' ref={poster5} src='/12_Ale_b7io9j.jpg' alt='Night Snack Club poster image'/>
                         <img className='nsc-poster7 size-sm fl-end' ref={poster7} src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster8 fl-end size-xl' ref={poster8} src='/17_Caitlin_v6uwf7.png ' alt='Night Snack Club poster image'/>
+                        <img className='nsc-poster8 fl-end' ref={poster8} src='/17_Caitlin_v6uwf7.png ' alt='Night Snack Club poster image'/>
                         <img className='nsc-poster6 size-md fl-start' ref={poster6} src='/37_Jenn_hcxmxl.jpg' alt='Night Snack Club poster image'/>
+                        <img className='nsc-poster9 fl-end' ref={poster9} src='/11_Enle_tkvmma.jpg' alt='Night Snack Club poster image'/>
                     </div>
                 </div>
             </div>
