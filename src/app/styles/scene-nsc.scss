@@ -23,10 +23,12 @@
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 10vh;
+        // gap: 10vh;
+        padding-left: 40vw;
 
         img {
             max-height: 60vh;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 
             &.fl-start {
                 align-self: flex-start;
@@ -47,6 +49,31 @@
             &.size-md {
                 max-height: 50vh;
             }
+
+            &.size-ml {
+                max-height: 55vh;
+            }
+
+            &.size-xl {
+                max-height: 70vh
+            }
+        }
+
+        .nsc-poster1 {
+            margin-right: -2em;
+        }
+
+        .nsc-poster2 {
+            margin-right: 25.5vh;
+        }
+
+        .nsc-poster5 {
+            margin-top: 5vh;
+        }
+
+        .nsc-poster8 {
+            margin-top: 12vh;
+            z-index: 9;
         }
     }
 }
@@ -98,6 +125,10 @@
     .title-slide {
         height: 33.33333vh;
         height: calc(100vh / 3);
+
+        .slide-container {
+            width: 100%;
+        }
 
         .title {
             font-size: 18em;

@@ -113,12 +113,12 @@ const TitleScene = () => {
       .add(nTimeline, 2)
       .fromTo(e1.current,
       {
-        scaleY: 1,
+        // scaleY: 1,
         autoAlpha: 0,
         left: '100%'
       },
       {
-        scaleY: -1,
+        // scaleY: -1,
         autoAlpha: 1,
         left: 0,
         duration: 0.32
@@ -211,14 +211,14 @@ const TitleScene = () => {
     }, 1.9)
     .to(e1Box.current, 
     {
-      scaleX: -1,
+      // scaleX: -1,
       scaleY: 1,
       duration: 0.25
     }, 2)
     .fromTo(p4.current,
     {
       autoAlpha: 0,
-      scaleX: -1
+      // scaleX: -1
     },
     {
       autoAlpha: 1,
