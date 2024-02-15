@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { horizontalLoop } from '../assets/horizontalLoop';
 import localfont from 'next/font/local';
 import '../globals.css';
 import '../styles/scene-nsc.scss';
@@ -38,8 +37,10 @@ const NscScene = () => {
     const poster7 = useRef(null);
     const poster8 = useRef(null);
     const poster9 = useRef(null);
+    const posterA = useRef(null);
     
     useEffect(() => {
+
         let ctx = gsap.context(() => {
 
             gsap
@@ -49,7 +50,9 @@ const NscScene = () => {
                     start: "top top",
                     pin: true,
                     scrub: true,
-                    end: () => "+=" + scrollContainer.current.offsetWidth,
+                    // end: () => "+=" + nscContainer.current.offsetWidth - scrollContainer.current.style.width,
+                    end: scrollContainer.current.offsetWidth,
+                    markers: true
                 }
             })
             .to(scrollContainer.current, {
@@ -62,14 +65,13 @@ const NscScene = () => {
                     trigger: nscContainer.current,
                     start: "top top",
                     scrub: true,
-                    end: () => '+=' + scrollContainer.current.offsetWidth,
-                    markers: true
+                    end: () => '+=' + scrollContainer.current.offsetWidth * 2,
                 }
             })
             .fromTo([titleTop.current, titleBot.current], {
                 xPercent: 0
             }, {
-                xPercent: -100,
+                xPercent: -100
             }, 0)
             .fromTo(titleMid.current, {
                 xPercent: -100
@@ -88,9 +90,6 @@ const NscScene = () => {
             .to(poster4.current, {
                 xPercent: -25.5
             },0)
-            // .to(poster5.current, {
-            //     xPercent: 55.5
-            // },0)
             .to(poster7.current, {
                 xPercent: -88
             },0)
@@ -100,6 +99,9 @@ const NscScene = () => {
             .to(poster8.current, {
                 xPercent: -95
             })
+            .to(posterA.current, {
+                xPercent: -26
+            }, 0)
 
             gsap
             .timeline({
@@ -133,7 +135,7 @@ const NscScene = () => {
                 autoAlpha: 1,
                 ease: 'none',
                 duration: 0.8
-            }, 0.8)
+            }, 1)
 
         }, nscContainer);
 
@@ -170,15 +172,36 @@ const NscScene = () => {
 
                 <div className="horizontal-container">
                     <div ref={scrollContainer} className="scroll-container">
-                        <img className='nsc-poster1' ref={poster1} src='/7_Caitlin_jqpqb3.jpg' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster2 size-sm fl-end' ref={poster2} src='/25_Leah_qiqsp1.png' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster3 fl-start size-md' ref={poster3} src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster4 fl-end' ref={poster4} src='/34_Hui_sudefj.jpg' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster5 fl-start' ref={poster5} src='/12_Ale_b7io9j.jpg' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster7 size-sm fl-end' ref={poster7} src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster8 fl-end' ref={poster8} src='/17_Caitlin_v6uwf7.png ' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster6 size-md fl-start' ref={poster6} src='/37_Jenn_hcxmxl.jpg' alt='Night Snack Club poster image'/>
-                        <img className='nsc-poster9 fl-end' ref={poster9} src='/11_Enle_tkvmma.jpg' alt='Night Snack Club poster image'/>
+                        <span ref={poster1} className='nsc-poster1 size-ml poster-wrapper'>
+                            <img src='/7_Caitlin_jqpqb3.jpg' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster2} className='nsc-poster2 size-sm fl-end poster-wrapper'>
+                            <img src='/25_Leah_qiqsp1.png' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster3} className='nsc-poster3 fl-start size-md poster-wrapper'>
+                            <img src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster4} className='nsc-poster4 size-ml fl-end pos-fr poster-wrapper'>
+                            <img src='/34_Hui_sudefj.jpg' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster5} className='nsc-poster5 fl-start size-md poster-wrapper'>
+                            <img src='/12_Ale_b7io9j.jpg' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster7} className='nsc-poster7 size-sm fl-end pos-fr poster-wrapper'>
+                            <img src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster8} className='nsc-poster8 fl-end size-ml poster-wrapper'>
+                            <img src='/17_Caitlin_v6uwf7.png ' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster6} className='nsc-poster6 size-md fl-start poster-wrapper'>
+                            <img src='/37_Jenn_hcxmxl.jpg' alt='Night Snack Club poster image'/>
+                        </span>
+                        <span ref={poster9} className='nsc-poster9 fl-center size-ml pos-fr poster-wrapper'>
+                            <img src='/11_Enle_tkvmma.jpg' alt='Night Snack Club poster image'/>
+                        </span>
+                        {/* <span ref={posterA} className='nsc-posterA fl-start size-sm poster-wrapper'>
+                            <img src='/18_Jocelyn_ow53xy.jpg' alt='Night Snack Club poster image'/>
+                        </span> */}
                     </div>
                 </div>
             </div>

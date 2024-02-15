@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Archivo_Black } from 'next/font/google';
+import { CharSwls } from '../assets/type_characters';
 import '../globals.css';
 import '../styles/scene-intro.scss';
 gsap.registerPlugin(ScrollTrigger);
@@ -14,9 +15,9 @@ const archivo = Archivo_Black({
 });
 
 const IntroScene = () => {
-    const introContainer = useRef();
-    const backgroundText = useRef()
-    const bodyText = useRef();
+    const introContainer = useRef(null);
+    const backgroundText = useRef(null)
+    const bodyText = useRef(null);
 
     useEffect(() => {
         let ctx = gsap.context(() => {
@@ -67,7 +68,7 @@ const IntroScene = () => {
                     </h4>
                 </span>
                 <div className="background-title" ref={backgroundText}>
-                    <h1 className={`intro-title ${archivo.className}`}>SWLS<br/>vol.1</h1>
+                    <CharSwls />
                 </div>
             </div>
         </section>
