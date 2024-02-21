@@ -25,87 +25,93 @@
         align-items: center;
         // gap: 10vh;
         padding-left: 40vw;
-
-        span.poster-wrapper {
-            height: 100%;
-            position: relative;
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-
-            &::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                // background: pink;
-                z-index: 1;
-            }
-
-            img {
-                max-height: 100%;
-                position: relative;
-                z-index: 3;
-            }
-
-            &.fl-start {
-                align-self: flex-start;
-            }
-
-            &.fl-center {
-                align-self: center;
-            }
-
-            &.fl-end {
-                align-self: flex-end;
-            }
-
-            &.size-sm {
-                max-height: 30vh;
-            }
-
-            &.size-md {
-                max-height: 50vh;
-            }
-
-            &.size-ml {
-                max-height: 65vh;
-            }
-
-            &.size-xl {
-                max-height: 70vh
-            }
-
-            &.pos-fr {
-                z-index: 5;
-            }
-        }
-
-        .nsc-poster1 {
-            margin-right: -2em;
-        }
-
-        .nsc-poster2 {
-            margin-right: 25.5vh;
-        }
-
-        .nsc-poster4 {
-            margin-right: 10.5vw;
-        }
-        .nsc-poster5 {
-            margin-top: 5vh;
-        }
-
-        .nsc-poster8 {
-            margin-top: 12vh;
-            z-index: 9;
-        }
-
-        .nsc-poster7, 
-        .nsc-poster8 {
-            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-        }
     }
+}
+
+.poster-container {
+    height: 100%;
+    display: flex;
+}
+
+span.poster-wrapper {
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        // background: pink;
+        z-index: 1;
+    }
+
+    img {
+        max-height: 100%;
+        position: relative;
+        z-index: 3;
+    }
+
+    &.fl-start {
+        align-self: flex-start;
+    }
+
+    &.fl-center {
+        align-self: center;
+    }
+
+    &.fl-end {
+        align-self: flex-end;
+    }
+
+    &.size-sm {
+        max-height: 30vh;
+    }
+
+    &.size-md {
+        max-height: 50vh;
+    }
+
+    &.size-ml {
+        max-height: 65vh;
+    }
+
+    &.size-xl {
+        max-height: 70vh
+    }
+
+    &.pos-fr {
+        z-index: 5;
+    }
+}
+
+.nsc-poster1 {
+    margin-right: -2em;
+}
+
+.nsc-poster2 {
+    margin-right: 25.5vh;
+}
+
+.nsc-poster4 {
+    margin-right: 10.5vw;
+}
+.nsc-poster5 {
+    margin-top: 5vh;
+}
+
+.nsc-poster8 {
+    margin-top: 12vh;
+    z-index: 9;
+}
+
+.nsc-poster7, 
+.nsc-poster8 {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
 .poster-section {
@@ -211,3 +217,26 @@
     justify-content: center;
     gap: 2em;
 }
+
+
+
+
+
+
+
+
+// .poster-container {
+//     width: 75vw;
+//     height: 100%;
+//     margin-right: 15vw;
+
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     .child {
+//         width: 200px;
+//         height: 200px;
+//         background: red;
+//     }
+// }

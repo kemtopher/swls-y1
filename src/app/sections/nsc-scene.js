@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import localfont from 'next/font/local';
@@ -17,6 +17,7 @@ const NscScene = () => {
     const nscContainer = useRef(null);
     const scrollContainer = useRef(null);
     const titleSection = useRef(null);
+    const testingContainer = useRef(null);
     const titleTop = useRef(null);
     const titleMid = useRef(null);
     const titleBot = useRef(null);
@@ -24,10 +25,6 @@ const NscScene = () => {
     const slide0 = useRef(null);
     const slide1 = useRef(null);
     const slide2 = useRef(null);
-    const outerTitle = useRef(null);
-    const title0 = useRef(null);
-    const title1 = useRef(null);
-    const title2 = useRef(null);
     const poster1 = useRef(null);
     const poster2 = useRef(null);
     const poster3 = useRef(null);
@@ -38,36 +35,108 @@ const NscScene = () => {
     const poster8 = useRef(null);
     const poster9 = useRef(null);
     const posterA = useRef(null);
+
+    const wrap1 = useRef(null);
+    const wrap2 = useRef(null);
+    const wrap3 = useRef(null);
+    const wrap4 = useRef(null);
     
     useEffect(() => {
-
         let ctx = gsap.context(() => {
 
-            gsap
-            .timeline({
+            const containerTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: nscContainer.current,
-                    start: "top top",
                     pin: true,
+                    start: "top top",
                     scrub: true,
-                    // end: () => "+=" + nscContainer.current.offsetWidth - scrollContainer.current.style.width,
-                    end: scrollContainer.current.offsetWidth,
-                    markers: true
+                    end: "+=" + scrollContainer.current.offsetWidth,
                 }
-            })
-            .to(scrollContainer.current, {
-                xPercent: -100
-            }, 0)
+            });
             
+            containerTl
+            .to(scrollContainer.current, {
+                // x: `-${scrollContainer.current.offsetWidth - (nscContainer.current.offsetWidth / 1.5)}px`
+                x: "-" + (scrollContainer.current.offsetWidth - nscContainer.current.offsetWidth)
+            }, 0)
+
+
+
             gsap
             .timeline({
                 scrollTrigger: {
-                    trigger: nscContainer.current,
-                    start: "top top",
+                    trigger: wrap1.current,
+                    containerAnimation: containerTl,
+                    start: "left right",
+                    end: "right left",
                     scrub: true,
-                    end: () => '+=' + scrollContainer.current.offsetWidth * 2,
                 }
             })
+            .to(poster1.current, {
+                xPercent: 60,
+                
+            },0)
+            .to(poster2.current, {
+                xPercent: 10.5
+            },0)
+
+            gsap
+            .timeline({
+                scrollTrigger: {
+                    trigger: wrap2.current,
+                    containerAnimation: containerTl,
+                    start: "left right",
+                    end: "right left",
+                    scrub: true,
+                    // markers: true,
+                }
+            })
+            .to(poster3.current, {
+                xPercent: 35
+            })
+            .to(poster4.current, {
+                xPercent: -25.5
+            },0)
+
+            gsap
+            .timeline({
+                scrollTrigger: {
+                    trigger: wrap3.current,
+                    containerAnimation: containerTl,
+                    start: "left right",
+                    end: "right left",
+                    scrub: true,
+                    markers: true,
+                }
+            })
+            .to(poster7.current, {
+                xPercent: -88
+            },0)
+            .to(poster6.current, {
+                xPercent: -48
+            },0)
+
+            // gsap
+            // .timeline({
+            //     scrollTrigger: {
+            //         trigger: wrap4.current,
+            //         containerAnimation: containerTl,
+            //         start: "left right",
+            //         end: "right left",
+            //         scrub: true,
+            //         markers: true,
+            //     }
+            // })
+            // .to(poster8.current, {
+            //     xPercent: -65
+            // })
+            // .to(posterA.current, {
+            //     xPercent: -26
+            // }, 0)
+
+            
+            // TITLE TL STUFF
+            containerTl
             .fromTo([titleTop.current, titleBot.current], {
                 xPercent: 0
             }, {
@@ -77,32 +146,9 @@ const NscScene = () => {
                 xPercent: -100
             }, {
                 xPercent: 0,
-            }, 0)
-            .to(poster1.current, {
-                xPercent: 60
-            },0)
-            .to(poster2.current, {
-                xPercent: 10.5
-            },0)
-            .to(poster3.current, {
-                xPercent: 35
-            })
-            .to(poster4.current, {
-                xPercent: -25.5
-            },0)
-            .to(poster7.current, {
-                xPercent: -88
-            },0)
-            .to(poster6.current, {
-                xPercent: -48
-            },0)
-            .to(poster8.current, {
-                xPercent: -95
-            })
-            .to(posterA.current, {
-                xPercent: -26
-            }, 0)
+            }, 0);
 
+            // TITLE SECTION
             gsap
             .timeline({
                 scrollTrigger: {
@@ -117,10 +163,10 @@ const NscScene = () => {
                 right: 0
             })
             .fromTo([slide0.current, slide1.current, slide2.current], {
-                x: '-100%'
+                xPercent: -100
             },
             {
-                x: '0%',
+                xPercent: 0,
                 stagger: 0.2,
             })
             .fromTo(titleSection.current, {
@@ -128,7 +174,7 @@ const NscScene = () => {
             }, {
                 autoAlpha: 1,
                 duration: 1.5
-            }, 0.6)
+            })
             .fromTo(scrollContainer.current, {
                 autoAlpha: 0,
             }, {
@@ -172,36 +218,47 @@ const NscScene = () => {
 
                 <div className="horizontal-container">
                     <div ref={scrollContainer} className="scroll-container">
-                        <span ref={poster1} className='nsc-poster1 size-ml poster-wrapper'>
-                            <img src='/7_Caitlin_jqpqb3.jpg' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster2} className='nsc-poster2 size-sm fl-end poster-wrapper'>
-                            <img src='/25_Leah_qiqsp1.png' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster3} className='nsc-poster3 fl-start size-md poster-wrapper'>
-                            <img src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster4} className='nsc-poster4 size-ml fl-end pos-fr poster-wrapper'>
-                            <img src='/34_Hui_sudefj.jpg' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster5} className='nsc-poster5 fl-start size-md poster-wrapper'>
-                            <img src='/12_Ale_b7io9j.jpg' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster7} className='nsc-poster7 size-sm fl-end pos-fr poster-wrapper'>
-                            <img src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster8} className='nsc-poster8 fl-end size-ml poster-wrapper'>
-                            <img src='/17_Caitlin_v6uwf7.png ' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster6} className='nsc-poster6 size-md fl-start poster-wrapper'>
-                            <img src='/37_Jenn_hcxmxl.jpg' alt='Night Snack Club poster image'/>
-                        </span>
-                        <span ref={poster9} className='nsc-poster9 fl-center size-ml pos-fr poster-wrapper'>
-                            <img src='/11_Enle_tkvmma.jpg' alt='Night Snack Club poster image'/>
-                        </span>
-                        {/* <span ref={posterA} className='nsc-posterA fl-start size-sm poster-wrapper'>
-                            <img src='/18_Jocelyn_ow53xy.jpg' alt='Night Snack Club poster image'/>
-                        </span> */}
+                        <div ref={wrap1} className="poster-container">
+                            <span ref={poster1} className='nsc-poster1 size-ml poster-wrapper'>
+                                <img src='/7_Caitlin_jqpqb3.jpg' alt='Night Snack Club poster image'/>
+                            </span>
+                            <span ref={poster2} className='nsc-poster2 size-sm fl-end poster-wrapper'>
+                                <img src='/25_Leah_qiqsp1.png' alt='Night Snack Club poster image'/>
+                            </span>
+                        </div>
+                        <div ref={wrap2} className="poster-container">
+                            <span ref={poster3} className='nsc-poster3 fl-start size-md poster-wrapper'>
+                                <img src='/19_Poster_Tarot_wyyemj.jpg' alt='Night Snack Club poster image'/>
+                            </span>
+                            <span ref={poster4} className='nsc-poster4 size-ml fl-end pos-fr poster-wrapper'>
+                                <img src='/34_Hui_sudefj.jpg' alt='Night Snack Club poster image'/>
+                            </span>
+                        </div>
+                        <div ref={wrap3} className="poster-container">
+                            <span ref={poster5} className='nsc-poster5 fl-start size-md poster-wrapper'>
+                                <img src='/12_Ale_b7io9j.jpg' alt='Night Snack Club poster image'/>
+                            </span>
+                            <span ref={poster7} className='nsc-poster7 size-sm fl-end pos-fr poster-wrapper'>
+                                <img src='/nsc-page-blog.png' alt='Night Snack Club poster image'/>
+                            </span>
+                        </div>
+                        <div ref={wrap4} className="poster-container">
+                            <span ref={poster8} className='nsc-poster8 fl-end size-ml poster-wrapper'>
+                                <img src='/17_Caitlin_v6uwf7.png ' alt='Night Snack Club poster image'/>
+                            </span>
+                            <span ref={poster6} className='nsc-poster6 size-md fl-start poster-wrapper'>
+                                <img src='/37_Jenn_hcxmxl.jpg' alt='Night Snack Club poster image'/>
+                            </span>
+                        </div>
+                        {/* <div ref={wrap5} className="poster-container">
+                            <span ref={poster9} className='nsc-poster9 fl-center size-ml pos-fr poster-wrapper'>
+                                <img src='/11_Enle_tkvmma.jpg' alt='Night Snack Club poster image'/>
+                            </span>
+                            
+                            <span ref={posterA} className='nsc-posterA fl-start size-sm poster-wrapper'>
+                                <img src='/18_Jocelyn_ow53xy.jpg' alt='Night Snack Club poster image'/>
+                            </span>
+                        </div> */}
                     </div>
                 </div>
             </div>
