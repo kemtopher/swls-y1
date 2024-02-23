@@ -17,7 +17,6 @@ const NscScene = () => {
     const nscContainer = useRef(null);
     const scrollContainer = useRef(null);
     const titleSection = useRef(null);
-    const testingContainer = useRef(null);
     const titleTop = useRef(null);
     const titleMid = useRef(null);
     const titleBot = useRef(null);
@@ -47,19 +46,17 @@ const NscScene = () => {
             const containerTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: nscContainer.current,
-                    pin: true,
                     start: "top top",
-                    scrub: true,
                     end: "+=" + scrollContainer.current.offsetWidth,
+                    pin: true,
+                    scrub: 3,
                 }
             });
             
             containerTl
             .to(scrollContainer.current, {
-                // x: `-${scrollContainer.current.offsetWidth - (nscContainer.current.offsetWidth / 1.5)}px`
                 x: "-" + (scrollContainer.current.offsetWidth - nscContainer.current.offsetWidth)
-            }, 0)
-
+            }, 0);
 
 
             gsap
@@ -88,7 +85,6 @@ const NscScene = () => {
                     start: "left right",
                     end: "right left",
                     scrub: true,
-                    // markers: true,
                 }
             })
             .to(poster3.current, {
@@ -106,7 +102,6 @@ const NscScene = () => {
                     start: "left right",
                     end: "right left",
                     scrub: true,
-                    markers: true,
                 }
             })
             .to(poster7.current, {
@@ -169,19 +164,19 @@ const NscScene = () => {
                 xPercent: 0,
                 stagger: 0.2,
             })
-            .fromTo(titleSection.current, {
-                autoAlpha: 0
-            }, {
-                autoAlpha: 1,
-                duration: 1.5
-            })
             .fromTo(scrollContainer.current, {
                 autoAlpha: 0,
             }, {
                 autoAlpha: 1,
                 ease: 'none',
                 duration: 0.8
-            }, 1)
+            })
+            .fromTo(titleSection.current, {
+                autoAlpha: 0
+            }, {
+                autoAlpha: 1,
+                duration: 1.2
+            }, 1.2)
 
         }, nscContainer);
 

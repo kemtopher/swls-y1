@@ -17,6 +17,9 @@ export default function RootLayout({ children }) {
   return (
     
       <html lang="en">
+        <head>
+          <link rel="stylesheet" href="https://use.typekit.net/wfh3mqi.css" />
+        </head>
         <body className={inter.className}>
           <SmoothScroll>
             {children}
