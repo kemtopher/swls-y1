@@ -15,8 +15,24 @@
         left: 50%;
         transform: translate(-50%, -50%);
         color: #8877d7;
+        border: 2px solid #f2f2f2;
+        padding: 18px 0.5em;
         font-size: 10em;
         font-weight: 700;
+    }
+}
+
+.title-letter-wrap {
+    display: flex;
+
+    .letter-overflow {
+        overflow: hidden;
+        line-height: 1;
+
+        .cafe-letter {
+            line-height: 1;
+            position: relative;
+        }
     }
 }
 

@@ -18,10 +18,15 @@ function FoodScene() {
     const foodCont = useRef(null);
     const innerSlide = useRef(null);
     const photos = useRef([]);
+    const letters = useRef([]);
     const {width, height} = useWindowDimensions();
 
     useEffect(() => {
-        // if (photos.current.one === undefined) return;
+        console.log(photos, letters)   
+    }, [])
+
+    useEffect(() => {
+        if (photos.current.one === undefined) return;
 
         const group = gsap.utils.toArray([
             photos.current.one,
@@ -45,9 +50,6 @@ function FoodScene() {
                 activeElement = element;
             }
         });
-
-        console.log(loop)
-        console.log("Drag: ", typeof Draggable)
     }, [])
 
     useEffect(() => {
@@ -62,10 +64,20 @@ function FoodScene() {
                     end: "+=" + cafeContainer.current.offsetHeight / 2,
                     pin: true,
                     scrub: true,
-                    markers: true
                 }
             })
 
+            const letterGroup = gsap.utils.toArray([
+                letters.current.c,
+                letters.current.a,
+                letters.current.f,
+                letters.current.e1,
+                letters.current.t,
+                letters.current.e2,
+                letters.current.r,
+                letters.current.i,
+                letters.current.a
+            ]);
 
             // title and photos in
             gsap
@@ -75,17 +87,23 @@ function FoodScene() {
                     start: "top 25%",
                     duration: 1.45,
                     ease: "none",
-                    markers: true
                 }
             })
-            .fromTo(foodTitle.current, {
-                autoAlpha: 0,
-                scale: 10
+            // .fromTo(foodTitle.current, {
+            //     autoAlpha: 0,
+            //     scale: 10
+            // }, {
+            //     autoAlpha: 1,
+            //     scale: 1,
+            //     duration: 1,
+            //     ease: "power1.out"
+            // })
+            .fromTo(letterGroup, {
+                y: "200px"
             }, {
-                autoAlpha: 1,
-                scale: 1,
-                duration: 1,
-                ease: "power1.out"
+                y: "0px",
+                duration: 3,
+                stagger: 0.3
             })
             .fromTo(innerSlide.current, {
                 autoAlpha: 0,
@@ -105,7 +123,6 @@ function FoodScene() {
                     start: "top -1px",
                     end: "+=" + cafeContainer.current.offsetHeight,
                     scrub: true,
-                    markers: true
                 }
             })
             .to(foodTitle.current, {
@@ -121,8 +138,38 @@ function FoodScene() {
     }, [])
   return (
     <section ref={cafeContainer} className="cafeteria">
-        <div ref={foodTitle} className="cafe-title cafe-font">CAFETERIA</div>
-        <div ref={foodCont} className="horizontal-stage">
+        <div ref={foodTitle} className="cafe-title cafe-font">
+            <div className="title-letter-wrap">
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.c = ref} className="cafe-letter">C</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.a = ref} className="cafe-letter">A</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.f = ref} className="cafe-letter">F</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.e1 = ref} className="cafe-letter">E</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.t = ref} className="cafe-letter">T</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.e2 = ref} className="cafe-letter">E</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.r = ref} className="cafe-letter">R</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.i = ref} className="cafe-letter">I</span>
+                </span>
+                <span className="letter-overflow">
+                    <span ref={ref => letters.current.a = ref} className="cafe-letter">A</span>
+                </span>
+            </div>
+        </div>
+        {/* <div ref={foodCont} className="horizontal-stage">
             <div ref={foodSlide} className="horizontal-slide">
                 <div ref={innerSlide} className="inner-slide">
                     <div ref={ref => photos.current.one = ref} className="image-wrap">
@@ -187,7 +234,7 @@ function FoodScene() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
     </section>
   )
 }

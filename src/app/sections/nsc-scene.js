@@ -119,7 +119,6 @@ const NscScene = () => {
             //         start: "left right",
             //         end: "right left",
             //         scrub: true,
-            //         markers: true,
             //     }
             // })
             // .to(poster8.current, {
