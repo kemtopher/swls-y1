@@ -5,10 +5,11 @@ import { gsap } from 'gsap';
 import { Draggable } from "gsap/Draggable";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { horizontalLoop } from '../helpers/horizontalLoop';
+import useWindowDimensions from '../components/useWindowDimensions';
 import "../styles/scene-food.scss";
 
+gsap.registerPlugin(Draggable);
 gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(Draggable)
 
 function FoodScene() {
     const cafeContainer = useRef(null);
@@ -17,50 +18,40 @@ function FoodScene() {
     const foodCont = useRef(null);
     const innerSlide = useRef(null);
     const photos = useRef([]);
+    const {width, height} = useWindowDimensions();
+
+    useEffect(() => {
+        // if (photos.current.one === undefined) return;
+
+        const group = gsap.utils.toArray([
+            photos.current.one,
+            photos.current.two,
+            photos.current.three,
+            photos.current.four,
+            photos.current.five,
+            photos.current.six,
+        ]);
+        
+        let activeElement;
+        const loop = horizontalLoop(group, {
+            paused: false, 
+            repeat: -1,
+            draggable: true,
+            center: true,
+            speed: 0.5,
+            onChange: (element, index) => {
+                activeElement && activeElement.classList.remove("active");
+                element.classList.add("active");
+                activeElement = element;
+            }
+        });
+
+        console.log(loop)
+        console.log("Drag: ", typeof Draggable)
+    }, [])
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-
-            const boxes = gsap.utils.toArray(photos.current);
-            console.log(photos.current)
-            console.log("boc: ", boxes)
-
-            const loop = horizontalLoop(boxes, {
-                paused: false, 
-                repeat: -1,
-                draggable: true,
-                center: true,
-            });
-
-            // const foodTl = gsap.timeline({
-            //     scrollTrigger: {
-            //         trigger: cafeContainer.current,
-            //         start: "top top",
-            //         end: "+=" + innerSlide.current.offsetWidth,
-            //         pin: true,
-            //         scrub: 3,
-            //     }
-            // })
-
-            // gsap
-            // .timeline({
-            //     scrollTrigger: {
-            //         trigger: innerSlide.current,
-            //         containerAnimation: foodTl,
-            //         start: "left right",
-            //         end: "-=" + innerSlide.current.offsetWidth,
-            //         duration: 1.45,
-            //         ease: 'none',
-            //         markers: true
-            //     }
-            // })
-            // .set(innerSlide.current, {
-            //     x: '100%'
-            // })
-            // .to(innerSlide.current, {
-            //     x: '-=5000px'
-            //     // xPercent: -100
-            // })
 
             // pin section
             gsap
@@ -74,6 +65,7 @@ function FoodScene() {
                     markers: true
                 }
             })
+
 
             // title and photos in
             gsap
@@ -103,7 +95,7 @@ function FoodScene() {
                 y: 0,
                 ease: "power1.out"
             })
-            .add(loop)
+
 
             // title out
             gsap
@@ -121,22 +113,6 @@ function FoodScene() {
                 y: "+=" + cafeContainer.current.offsetHeight / 1.3,
                 ease: "none",
             }, 0)
-            
-
-            // photos out
-            gsap
-            .timeline({
-                scrollTrigger: {
-                    trigger: cafeContainer.current,
-                    start: "top -1px",
-                    end: "+=" + cafeContainer.current.offsetHeight,
-                    markers: true
-                }
-            })
-            .to(innerSlide.current, {
-                autoAlpha: 0,
-                duration: 0.5
-            })
 
             
         }, cafeContainer);
@@ -179,30 +155,36 @@ function FoodScene() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="image-wrap">
-                        <img src="/food-muss.jpg" alt="" />
-                        <h4 className="cafe-font-body food-title">Mussels + Pasta</h4>
+                    <div ref={ref => photos.current.four = ref} className="image-wrap">
+                        <div className="sizer">
+                            <div className="image-reveal">
+                                <img src="/food-balls.jpg" alt="" />
+                            </div>
+                            <div className="title-reveal">
+                                <h4 className="food-title caf-b">Jian Dui</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div className="image-wrap">
-                        <img src="/food-balls.jpg" alt="" />
-                        <h4 className="cafe-font-body food-title">Dim Sum</h4>
+                    <div ref={ref => photos.current.five = ref} className="image-wrap">
+                        <div className="sizer">
+                            <div className="image-reveal">
+                                <img src="/food-bapsang2.jpg" alt="" />
+                            </div>
+                            <div className="title-reveal">
+                                <h4 className="food-title caf-bi">Bapsang</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div className="image-wrap">
-                        <img src="/food-bapsang.jpg" alt="" />
-                        <h4 className="cafe-font-body food-title">Bapsang</h4>
+                    <div ref={ref => photos.current.six = ref} className="image-wrap">
+                        <div className="sizer">
+                            <div className="image-reveal">
+                                <img src="/food-budae.jpg" alt="" />
+                            </div>
+                            <div className="title-reveal">
+                                <h4 className="food-title caf-m">Budae Jjigae</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div className="image-wrap">
-                        <img src="/food-budae.jpg" alt="" />
-                        <h4 className="cafe-font-body food-title">Budae Jjigae</h4>
-                    </div>
-                    <div className="image-wrap">
-                        <img src="/food-balls.jpg" alt="" />
-                        <h4 className="cafe-font-body food-title">Sessame Balls</h4>
-                    </div>
-                    <div className="image-wrap">
-                        <img src="/food-bapsang.jpg" alt="" />
-                        <h4 className="cafe-font-body food-title">Bapsang</h4>
-                    </div> */}
                 </div>
             </div>
         </div>

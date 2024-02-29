@@ -5,6 +5,12 @@ body {
     line-height: 1.5;
   }
 
+  .carto-body {
+    font-family: "cartograph-cf", monospace;
+    // font-weight: 300;
+    font-style: normal;
+  }
+
   .cafe-font-header {
     font-family: "proxima-nova-extra-condensed", sans-serif;
     // font-weight: 700;
@@ -21,8 +27,8 @@ body {
 
   .caf-bi {
     font-family: "quiche-stencil", sans-serif;
-font-weight: 700;
-font-style: italic;
+    font-weight: 700;
+    font-style: italic;
   }
 
   .caf-b {
