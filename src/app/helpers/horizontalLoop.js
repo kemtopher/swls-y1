@@ -132,7 +132,6 @@ export function horizontalLoop(items, config) {
 	}
 
 	if (config.draggable && typeof(Draggable) === "function") {
-		console.log("true to drag")
 	  proxy = document.createElement("div")
 	  let wrap = gsap.utils.wrap(0, 1),
 		ratio, startProgress, draggable, dragSnap, lastSnap, initChangeX, wasPlaying,

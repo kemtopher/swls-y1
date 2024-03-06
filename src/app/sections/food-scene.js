@@ -22,10 +22,6 @@ function FoodScene() {
     const {width, height} = useWindowDimensions();
 
     useEffect(() => {
-        console.log(photos, letters)   
-    }, [])
-
-    useEffect(() => {
         if (photos.current.one === undefined) return;
 
         const group = gsap.utils.toArray([
@@ -38,18 +34,18 @@ function FoodScene() {
         ]);
         
         let activeElement;
-        const loop = horizontalLoop(group, {
-            paused: false, 
-            repeat: -1,
-            draggable: true,
-            center: true,
-            speed: 0.5,
-            onChange: (element, index) => {
-                activeElement && activeElement.classList.remove("active");
-                element.classList.add("active");
-                activeElement = element;
-            }
-        });
+        // const loop = horizontalLoop(group, {
+        //     paused: false, 
+        //     repeat: -1,
+        //     draggable: true,
+        //     center: true,
+        //     speed: 0.5,
+        //     onChange: (element, index) => {
+        //         activeElement && activeElement.classList.remove("active");
+        //         element.classList.add("active");
+        //         activeElement = element;
+        //     }
+        // });
     }, [])
 
     useEffect(() => {
@@ -79,6 +75,16 @@ function FoodScene() {
                 letters.current.a
             ]);
 
+            gsap
+            .fromTo(letterGroup, {
+                y: 200
+            }, {
+                y: 0,
+                duration: 3,
+                stagger: 0.3,
+                yoyo: true
+            })
+
             // title and photos in
             gsap
             .timeline({
@@ -98,13 +104,6 @@ function FoodScene() {
             //     duration: 1,
             //     ease: "power1.out"
             // })
-            .fromTo(letterGroup, {
-                y: "200px"
-            }, {
-                y: "0px",
-                duration: 3,
-                stagger: 0.3
-            })
             .fromTo(innerSlide.current, {
                 autoAlpha: 0,
                 y: 150
@@ -169,16 +168,13 @@ function FoodScene() {
                 </span>
             </div>
         </div>
-        {/* <div ref={foodCont} className="horizontal-stage">
+        <div ref={foodCont} className="horizontal-stage">
             <div ref={foodSlide} className="horizontal-slide">
                 <div ref={innerSlide} className="inner-slide">
                     <div ref={ref => photos.current.one = ref} className="image-wrap">
                         <div className="sizer">
                             <div className="image-reveal">
-                                <img src="/food-balls.jpg" alt="" />
-                            </div>
-                            <div className="title-reveal">
-                                <h4 className="food-title caf-b">Jian Dui</h4>
+                                <img src="/food-bapsang2.jpg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -187,9 +183,6 @@ function FoodScene() {
                             <div className="image-reveal">
                                 <img src="/food-bapsang2.jpg" alt="" />
                             </div>
-                            <div className="title-reveal">
-                                <h4 className="food-title caf-bi">Bapsang</h4>
-                            </div>
                         </div>
                     </div>
                     <div ref={ref => photos.current.three = ref} className="image-wrap">
@@ -197,18 +190,12 @@ function FoodScene() {
                             <div className="image-reveal">
                                 <img src="/food-budae.jpg" alt="" />
                             </div>
-                            <div className="title-reveal">
-                                <h4 className="food-title caf-m">Budae Jjigae</h4>
-                            </div>
                         </div>
                     </div>
                     <div ref={ref => photos.current.four = ref} className="image-wrap">
                         <div className="sizer">
                             <div className="image-reveal">
-                                <img src="/food-balls.jpg" alt="" />
-                            </div>
-                            <div className="title-reveal">
-                                <h4 className="food-title caf-b">Jian Dui</h4>
+                                <img src="/food-bapsang2.jpg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -217,9 +204,6 @@ function FoodScene() {
                             <div className="image-reveal">
                                 <img src="/food-bapsang2.jpg" alt="" />
                             </div>
-                            <div className="title-reveal">
-                                <h4 className="food-title caf-bi">Bapsang</h4>
-                            </div>
                         </div>
                     </div>
                     <div ref={ref => photos.current.six = ref} className="image-wrap">
@@ -227,14 +211,11 @@ function FoodScene() {
                             <div className="image-reveal">
                                 <img src="/food-budae.jpg" alt="" />
                             </div>
-                            <div className="title-reveal">
-                                <h4 className="food-title caf-m">Budae Jjigae</h4>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> */}
+        </div>
     </section>
   )
 }

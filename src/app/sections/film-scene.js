@@ -155,7 +155,7 @@ const FilmScene = () => {
                         <div className="para-row fl-end">
                             <span className="para-card">
                                 <div ref={aboutText} className={`about-text ${oswald.className}`}>
-                                    <p>ATLFilmParty (AFP) is a free local Atlanta film competition and industry networking event with a goal of transforming ATL's film industry into a real a$$ community that is accessible to all.</p>
+                                    <p>ATLFilmParty (AFP) is a free local Atlanta film competition and industry networking event with a goal of transforming ATL&apos;s film industry into a real a$$ community that is accessible to all.</p>
                                 </div>
                             </span>
                         </div>

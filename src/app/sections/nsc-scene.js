@@ -32,9 +32,6 @@ const NscScene = () => {
     const poster6 = useRef(null);
     const poster7 = useRef(null);
     const poster8 = useRef(null);
-    const poster9 = useRef(null);
-    const posterA = useRef(null);
-
     const wrap1 = useRef(null);
     const wrap2 = useRef(null);
     const wrap3 = useRef(null);
@@ -49,13 +46,12 @@ const NscScene = () => {
                     start: "top top",
                     end: "+=" + scrollContainer.current.offsetWidth,
                     pin: true,
-                    scrub: 3,
-                }
+                    scrub: true                }
             });
             
             containerTl
             .to(scrollContainer.current, {
-                x: "-" + (scrollContainer.current.offsetWidth - nscContainer.current.offsetWidth)
+                x: "-=" + (scrollContainer.current.offsetWidth - nscContainer.current.offsetWidth)
             }, 0);
 
 
@@ -66,7 +62,7 @@ const NscScene = () => {
                     containerAnimation: containerTl,
                     start: "left right",
                     end: "right left",
-                    scrub: true,
+                    ease: "none"
                 }
             })
             .to(poster1.current, {
@@ -84,7 +80,7 @@ const NscScene = () => {
                     containerAnimation: containerTl,
                     start: "left right",
                     end: "right left",
-                    scrub: true,
+                    ease: "none"
                 }
             })
             .to(poster3.current, {
@@ -92,7 +88,7 @@ const NscScene = () => {
             })
             .to(poster4.current, {
                 xPercent: -25.5
-            },0)
+            },0);
 
             gsap
             .timeline({
@@ -101,7 +97,7 @@ const NscScene = () => {
                     containerAnimation: containerTl,
                     start: "left right",
                     end: "right left",
-                    scrub: true,
+                    ease: "none"
                 }
             })
             .to(poster7.current, {
@@ -110,23 +106,6 @@ const NscScene = () => {
             .to(poster6.current, {
                 xPercent: -48
             },0)
-
-            // gsap
-            // .timeline({
-            //     scrollTrigger: {
-            //         trigger: wrap4.current,
-            //         containerAnimation: containerTl,
-            //         start: "left right",
-            //         end: "right left",
-            //         scrub: true,
-            //     }
-            // })
-            // .to(poster8.current, {
-            //     xPercent: -65
-            // })
-            // .to(posterA.current, {
-            //     xPercent: -26
-            // }, 0)
 
             
             // TITLE TL STUFF
@@ -148,6 +127,7 @@ const NscScene = () => {
                 scrollTrigger: {
                     trigger: nscContainer.current,
                     start: "top 65%",
+                    ease: "none"
                 }
             })
             .set([titleTop.current, titleBot.current], {
@@ -167,7 +147,6 @@ const NscScene = () => {
                 autoAlpha: 0,
             }, {
                 autoAlpha: 1,
-                ease: 'none',
                 duration: 0.8
             })
             .fromTo(titleSection.current, {

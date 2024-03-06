@@ -63,7 +63,8 @@
                     display: flex;
                     flex-direction: column;
                     height: 100%;
-                    overflow: auto;
+                    aspect-ratio: 4 / 6;
+                    overflow: hidden;
                     position: relative;
                     z-index: 2;
 

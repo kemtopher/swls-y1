@@ -64,7 +64,7 @@ const IntroScene = () => {
             <div className="intro-grid">
                 <span className="intro-container">
                     <h4 className="intro-body carto-body" ref={bodyText}>
-                    SWLS is a review of creative projects I've been a part of over the past year. You can think of this as a yearly catch up. It's also a way for me to ensure I document my projects. You know, like accountability or something like that. The first edition will be a little more than just the last year, mainly because I didn't think to document much and I need to fill the space up. BUT HEY, this is not a bad thing! Since I've been so bad about documenting my projects, you've probably not seen them. WIN-WIN if you ask me. 
+                    SWLS is a review of creative projects I&apos;ve been a part of over the past year. You can think of this as a yearly catch up. It&apos;s also a way for me to ensure I document my projects. You know, like accountability or something like that. The first edition will be a little more than just the last year, mainly because I didn&apos;t think to document much and I need to fill the space up. BUT HEY, this is not a bad thing! Since I&apos;ve been so bad about documenting my projects, you&apos;ve probably not seen them. WIN-WIN if you ask me. 
                     </h4>
                 </span>
                 <div className="background-title" ref={backgroundText}>
