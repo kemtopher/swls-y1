@@ -3,35 +3,43 @@
 
     // $breakpoint is simply a variable that can have several values
 
-    @if $breakpoint==xs {
+    @if $breakpoint == xxs {
+        @media only screen and (min-width: 425px) {
+            @content;
+        }
+    }
 
-        // here `laptop` is the value of $breakpoint
-        // when call laptop, we mean the following piece of code        
-
+    @if $breakpoint == xs {
         @media only screen and (min-width: 640px) {
             @content;
         }
     }
 
-    @if $breakpoint==sm {
+    @if $breakpoint == sm {
         @media only screen and (min-width: 768px) {
             @content;
         }
     }
 
-    @if $breakpoint==md {
+    @if $breakpoint == smMax {
+        @media only screen and (max-width: 767px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == md {
         @media only screen and (min-width: 1024px) {
             @content;
         }
     }
 
-    @if $breakpoint==lg {
+    @if $breakpoint == lg {
         @media only screen and (min-width: 1280px) {
             @content;
         }
     }
 
-    @if $breakpoint==xl {
+    @if $breakpoint == xl {
         @media only screen and (min-width: 1536px) {
             @content;
         }
