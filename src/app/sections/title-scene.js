@@ -380,13 +380,14 @@ const TitleScene = () => {
           <div ref={mobSubtitle} className="title-container title-word mobile-title mobile-only">
             <span className="sub-title mob-title" ref={subTitle}>
               <h3>Since We Last Spoke</h3>
+              <h3 className="mob-sub">A yearly review (sort of)</h3>
             </span>
           </div>
-          <div ref={reviewText} className="title-container title-word mobile-sub mobile-only">
+          {/* <div ref={reviewText} className="title-container title-word mobile-sub mobile-only">
             <span className="sub-title" ref={subTitle}>
-              <h3>A yearly review <br />( sort of )</h3>
+              <h3>A yearly review ( sort of )</h3>
             </span>
-          </div>
+          </div> */}
         </div>
       </section>
     );
