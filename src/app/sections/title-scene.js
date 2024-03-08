@@ -46,6 +46,7 @@ const TitleScene = () => {
 
   const titleGrid = useRef(null);
   const subTitle = useRef(null);
+  const tabTitle = useRef(null);
 
   useEffect(() => {
     let mm = gsap.matchMedia();
@@ -299,7 +300,6 @@ const TitleScene = () => {
             </span>
             <span className="letter-wrap">
               <span className="letter-character i1" ref={i1}>i</span>
-              {/* <span className="letter-character i1" ref={i1}><CharI /></span> */}
             </span>
             <span className="letter-wrap">
               <div className="n-slide" ref={n1}>
@@ -345,7 +345,7 @@ const TitleScene = () => {
           </h1>
           <h1 className="title-container title-word no-mobile title-third">
             <span className="justify-words">
-              <span className="sub-title" ref={subTitle}>
+              <span className="sub-title desktop-only" ref={subTitle}>
                 <h3>A yearly review ( sort of )</h3>
               </span>
 
@@ -368,6 +368,11 @@ const TitleScene = () => {
               </span>
             </span>
           </h1>
+          <h1 className="title-container title-word tablet-subtitle">
+            <span className="sub-title" ref={subTitle}>
+              <h3>A yearly review ( sort of )</h3>
+            </span>
+          </h1>
 
           {/* Mobile pieces */}
           <h1 ref={mobTitleS} className="title-container title-word mobile-s mobile-only">S</h1>
@@ -383,11 +388,6 @@ const TitleScene = () => {
               <h3 className="mob-sub">A yearly review (sort of)</h3>
             </span>
           </div>
-          {/* <div ref={reviewText} className="title-container title-word mobile-sub mobile-only">
-            <span className="sub-title" ref={subTitle}>
-              <h3>A yearly review ( sort of )</h3>
-            </span>
-          </div> */}
         </div>
       </section>
     );
