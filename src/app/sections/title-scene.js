@@ -4,7 +4,7 @@ import {useEffect, useRef} from 'react';
 import { CustomEase, gsap } from 'gsap';
 import { Inter } from 'next/font/google';
 import { CharI } from '../assets/type_characters';
-import '../globals.css';
+import '../globals.scss';
 import '../styles/scene-title.scss';
 // gsap.registerPlugin(CustomEase);
 
@@ -47,9 +47,12 @@ const TitleScene = () => {
   const titleGrid = useRef(null);
   const subTitle = useRef(null);
   const tabTitle = useRef(null);
+  const deskSubTitle = useRef(null);
 
   useEffect(() => {
     let mm = gsap.matchMedia();
+
+    console.log("MM: ", mm)
 
     mm.add(
       `(max-width: 767px)`,
@@ -58,37 +61,50 @@ const TitleScene = () => {
         .timeline()
         .fromTo([
           mobTitleS.current,
-          mobTitleW.current,
+          mobTitleL.current,
         ], {
-          autoAlpha: 0
+          autoAlpha: 0,
+          filter: "blur(5px)",
         }, {
+          delay: 1,
           autoAlpha: 1,
-          duration: 1.75,
-          stagger: 0.5,
-          ease: "power1.out"
+          filter: "blur(0px)",
+          duration: 0.25,
+          ease: "expo.in",
+
         })
         .fromTo([
-          mobTitleL.current,
+          mobTitleW.current,
           mobTitleS2.current
         ], {
-          autoAlpha: 0
+          autoAlpha: 0,
+          filter: "blur(5px)",
         }, {
           autoAlpha: 1,
-          stagger: 0.35,
-          duration: 0.75,
-          ease: "power1.out"
-        }, 0.5)
+          filter: "blur(0px)",
+          duration: 0.25,
+          ease: "expo.in",
+
+        })
+        .fromTo([
+          mobDash2.current,
+        ], {
+          width: '0%'
+        }, {
+          width: '100%',
+          ease: "power3.inOut",
+          duration: 0.5
+        })
         .fromTo([
           mobDash1.current,
-          mobDash2.current,
           mobDash3.current
         ], {
           width: '0%'
         }, {
           width: '100%',
           ease: "power3.inOut",
-          duration: 0.75
-        }, 1)
+          duration: 0.5
+        })
         .fromTo([
           mobSubtitle.current,
         ], {
@@ -97,14 +113,14 @@ const TitleScene = () => {
           autoAlpha: 1,
           duration: 0.75,
           ease: "power3.inOut",
-        }, 1.5)
+        })
       },
       titleGrid.current
     )
 
     mm.add(
       {
-        isTablet: `(min-width: 768px)`,
+        isTablet: `(min-device-width: 768px) and (max-device-width: 1023px)`,
         isDesktop: `(min-width: 1024px)`,
         reduceMotion: "(prefers-reduced-motion: reduce)",
       },
@@ -277,12 +293,19 @@ const TitleScene = () => {
           scaleX: 1,
           duration: 1
         }, 2.6)
-        .fromTo(subTitle.current, {
-          autoAlpha: 0
+        .fromTo(deskSubTitle.current, {
+          autoAlpha: 0,
         },
         {
-          autoAlpha: 1,
-          duration: 1.1
+          autoAlpha: isDesktop ? 1 : 0,
+          duration: isDesktop ? 1.1 : 0,
+        }, 3)
+        .fromTo(tabTitle.current, {
+          autoAlpha: 0,
+        },
+        {
+          autoAlpha: isTablet ? 1 : 0,
+          duration: isTablet ? 1.1 : 0,
         }, 3)
       },
       titleGrid.current
@@ -345,7 +368,7 @@ const TitleScene = () => {
           </h1>
           <h1 className="title-container title-word no-mobile title-third">
             <span className="justify-words">
-              <span className="sub-title desktop-only" ref={subTitle}>
+              <span className="sub-title desktop-only" ref={deskSubTitle}>
                 <h3>A yearly review ( sort of )</h3>
               </span>
 
@@ -368,8 +391,9 @@ const TitleScene = () => {
               </span>
             </span>
           </h1>
+          {/* TABLET SUBTITLE REF */}
           <h1 className="title-container title-word tablet-subtitle">
-            <span className="sub-title" ref={subTitle}>
+            <span className="sub-title" ref={tabTitle}>
               <h3>A yearly review ( sort of )</h3>
             </span>
           </h1>

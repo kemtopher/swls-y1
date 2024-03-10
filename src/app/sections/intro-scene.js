@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Archivo_Black } from 'next/font/google';
 import { CharSwls } from '../assets/type_characters';
-import '../globals.css';
+import '../globals.scss';
 import '../styles/scene-intro.scss';
 gsap.registerPlugin(ScrollTrigger);
 

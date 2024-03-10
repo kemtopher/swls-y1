@@ -112,6 +112,7 @@ section#title {
             color: #c8ffce;
             font-size: 1.75rem;
             font-weight: normal;
+            margin: 0;
         }
     }
 
@@ -201,6 +202,9 @@ section#title {
 .mobile-only-tablet {
     display: none !important;
 }
+.tablet-subtitle {
+    display: none;
+}
 
 @include respond(smMax) {
     .no-mobile {
@@ -212,17 +216,13 @@ section#title {
     }
 }
 
-.tablet-subtitle {
-    display: none;
-}
-
 @include respond(smMd) {
     .mobile-only-tablet {
         display: block;
     }
 
     .tablet-subtitle {
-        display: block;
+        display: inherit;
         grid-row: 4;
         grid-column: 1 / span 4;
         align-self: end;
@@ -230,16 +230,11 @@ section#title {
 }
 
 .desktop-only {
-    visibility: hidden;
+    display: none;
 }
 
 @include respond(md) {
     .desktop-only {
         display: block;
-        // visibility: visible;
     }
 }
-
-// .tab-title {
-//     display: none;
-// }

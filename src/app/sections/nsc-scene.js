@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import localfont from 'next/font/local';
-import '../globals.css';
+import '../globals.scss';
 import '../styles/scene-nsc.scss';
 
 gsap.registerPlugin(ScrollTrigger);

@@ -13,8 +13,8 @@ export default function Home() {
       <NoSsr>
         <TitleScene />
         <IntroScene />
-        <FoodScene />
-        <NscScene />
+        {/* <FoodScene /> */}
+        {/* <NscScene /> */}
         <FilmScene />
       </NoSsr>
     </main>

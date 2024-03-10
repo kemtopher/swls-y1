@@ -13,10 +13,10 @@ section#film {
 .film-title-grid {
     width: 100%;
     height: 100vh;
-    // max-height: 100vh;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr 1fr 1fr;
+    // grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     text-align: center;
     position: absolute;
@@ -26,20 +26,33 @@ section#film {
 
     @include respond(md) {
         grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: 1fr 1fr 1fr;
     } 
 
     .grid-character-wrap {
-        grid-row-start: 2;
         overflow: hidden;
+        grid-row-start: 5;
+
+            @include respond(md) {
+                grid-row-start: 2;
+            }
         
         &.line-2 {
-            grid-row-start: 3;
+            grid-row-start: 6;
+
+            @include respond(md) {
+                grid-row-start: 3;
+            }
         }
 
         .grid-character {
-            font-size: 13em;
+            font-size: 8em;
             line-height: 1;
             position: relative;
+
+            @include respond(md) {
+                font-size: 13em;
+            }
         }
     }
 }
@@ -50,7 +63,6 @@ section#film {
     .paralax-stage {
         display: flex;
         flex-direction: column;
-        // gap: 15vw;
 
         .para-row {
             padding: 0 10%;
@@ -76,7 +88,11 @@ section#film {
     }
 
     .para-card {
-        width: 50%;
+        width: 100%;
+
+        @include respond(md) {
+            width: 50%;
+        }
 
         &.sm {
             width: 25%;
@@ -127,8 +143,12 @@ section#film {
         // padding-top: 10vw;
 
         p {
-            font-size: 4rem;
             color: #f82645;
+            font-size: 2em;
+
+            @include respond(md) {
+                font-size: 4rem;
+            }
         }
     }
 }

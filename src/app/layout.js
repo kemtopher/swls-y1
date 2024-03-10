@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import SmoothScroll from "./smooth-scroll";
 import { gsap } from "gsap/gsap-core";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "./globals.css";
+import "./globals.scss";
 
 
 const inter = Inter({ subsets: ["latin"] });
